@@ -1,0 +1,35 @@
+workflows:
+  ios-trollstore-release:
+    name: Build qhun22Music IPA (TrollStore)
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+    working_directory: app
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+
+    scripts:
+      - name: 1. Cài đặt Flutter dependencies & Tạo Icon
+        script: |
+          flutter packages pub get
+          dart run flutter_launcher_icons
+          cd ios
+          pod install --repo-update
+          cd ..
+
+      - name: 2. Biên dịch Flutter iOS Release (No Codesign)
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: 3. Đóng gói file .ipa chuẩn TrollStore
+        script: |
+          echo "Bắt đầu đóng gói Payload..."
+          mkdir -p Payload
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          zip -r -9 qhun22Music_TrollStore.ipa Payload
+          ls -lh qhun22Music_TrollStore.ipa
+
+    artifacts:
+      - app/qhun22Music_TrollStore.ipa
+      - "*.ipa"

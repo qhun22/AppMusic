@@ -10,15 +10,16 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: 1. Khởi tạo cấu trúc iOS chuẩn Flutter & Cài đặt thư viện
+      - name: 1. Khởi tạo sạch cấu trúc iOS chuẩn Flutter & Cài đặt thư viện
         script: |
-          # 1. Tắt Swift Package Manager
+          # 1. Tắt Swift Package Manager để dùng CocoaPods ổn định
           flutter config --no-enable-swift-package-manager
 
-          # 2. Khởi tạo cấu trúc iOS Runner với đầy đủ Build Phases của Flutter
+          # 2. Xóa cấu trúc iOS cũ chưa hoàn thiện và sinh mới hoàn toàn từ Flutter SDK
+          rm -rf ios
           flutter create --platforms=ios --org com.qhun22 .
 
-          # 3. Cấu hình tên hiển thị qhun22Music và quyền chạy ngầm (Background Audio) vào Info.plist
+          # 3. Cấu hình tên app qhun22Music và quyền chạy ngầm (Background Audio)
           /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string qhun22Music" ios/Runner/Info.plist
           /usr/libexec/PlistBuddy -c "Set :CFBundleName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleName string qhun22Music" ios/Runner/Info.plist
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" ios/Runner/Info.plist 2>/dev/null || true

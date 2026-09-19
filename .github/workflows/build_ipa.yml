@@ -34,6 +34,7 @@ jobs:
         run: |
           cd app
           flutter config --no-enable-swift-package-manager
+          rm -rf ios
           flutter create --platforms=ios --org com.qhun22 .
           /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string qhun22Music" ios/Runner/Info.plist
           /usr/libexec/PlistBuddy -c "Set :CFBundleName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleName string qhun22Music" ios/Runner/Info.plist

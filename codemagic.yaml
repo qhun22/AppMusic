@@ -10,12 +10,27 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: 1. Tắt Swift Package Manager & Cài đặt Dependencies
+      - name: 1. Khởi tạo cấu trúc iOS chuẩn Flutter & Cài đặt thư viện
         script: |
-          # Tắt Swift Package Manager theo tài liệu chính thức Flutter
+          # 1. Tắt Swift Package Manager
           flutter config --no-enable-swift-package-manager
+
+          # 2. Khởi tạo cấu trúc iOS Runner với đầy đủ Build Phases của Flutter
+          flutter create --platforms=ios --org com.qhun22 .
+
+          # 3. Cấu hình tên hiển thị qhun22Music và quyền chạy ngầm (Background Audio) vào Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string qhun22Music" ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleName string qhun22Music" ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:1 string fetch" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSAllowsArbitraryLoads bool true" ios/Runner/Info.plist 2>/dev/null || true
+
+          # 4. Tải dependencies và tạo App Icon từ assets/var.jpg
           flutter pub get
           dart run flutter_launcher_icons
+
+          # 5. Cài đặt CocoaPods
           cd ios
           pod install --repo-update
           cd ..
@@ -31,6 +46,7 @@ workflows:
           mkdir -p Payload
           cp -r build/ios/iphoneos/Runner.app Payload/
           zip -r -9 qhun22Music_TrollStore.ipa Payload
+          echo "Kích thước file IPA:"
           ls -lh qhun22Music_TrollStore.ipa
 
     artifacts:

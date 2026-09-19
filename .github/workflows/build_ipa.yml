@@ -32,8 +32,15 @@ jobs:
 
       - name: 4. Cài đặt CocoaPods dependencies & Flutter Pub
         run: |
-          flutter config --no-enable-swift-package-manager
           cd app
+          flutter config --no-enable-swift-package-manager
+          flutter create --platforms=ios --org com.qhun22 .
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleDisplayName string qhun22Music" ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleName qhun22Music" ios/Runner/Info.plist 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleName string qhun22Music" ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:1 string fetch" ios/Runner/Info.plist 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSAllowsArbitraryLoads bool true" ios/Runner/Info.plist 2>/dev/null || true
           flutter pub get
           dart run flutter_launcher_icons
           cd ios

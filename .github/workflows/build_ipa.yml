@@ -32,6 +32,7 @@ jobs:
 
       - name: 4. Cài đặt CocoaPods dependencies & Flutter Pub
         run: |
+          flutter config --no-enable-swift-package-manager
           cd app
           flutter pub get
           dart run flutter_launcher_icons

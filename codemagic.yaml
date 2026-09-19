@@ -10,9 +10,11 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: 1. Cài đặt Flutter dependencies & Tạo Icon
+      - name: 1. Tắt Swift Package Manager & Cài đặt Dependencies
         script: |
-          flutter packages pub get
+          # Tắt Swift Package Manager theo tài liệu chính thức Flutter
+          flutter config --no-enable-swift-package-manager
+          flutter pub get
           dart run flutter_launcher_icons
           cd ios
           pod install --repo-update
@@ -20,6 +22,7 @@ workflows:
 
       - name: 2. Biên dịch Flutter iOS Release (No Codesign)
         script: |
+          flutter config --no-enable-swift-package-manager
           flutter build ios --release --no-codesign
 
       - name: 3. Đóng gói file .ipa chuẩn TrollStore

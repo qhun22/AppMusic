@@ -1,7 +1,12 @@
 [
   {
     "id": 1,
-    "title": "Sample Remix Track - Example Hit",
-    "url": "https://qhun22.github.io/AppMusic/songs/remix/sample_remix.mp3"
+    "title": "Vết Thương Trong Lòng (Remix) - Thế Hoàng",
+    "url": "https://qhun22.github.io/AppMusic/songs/remix/VET%20THUONG%20TRONG%20LONG%20-%20THE%20HOANG%20_%20OFFICIAL%20LYRICS%20VIDEO.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Người Thương Huế (Remix) - Thế Hoàng",
+    "url": "https://qhun22.github.io/AppMusic/songs/remix/VET%20THUONG%20TRONG%20LONG%20-%20THE%20HOANG%20_%20OFFICIAL%20LYRICS%20VIDEO.mp3"
   }
 ]

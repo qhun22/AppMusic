@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import '../models/song.dart';
 
 class AudioManager {
@@ -19,6 +20,8 @@ class AudioManager {
       ValueNotifier<List<Song>>([]);
   final ValueNotifier<int> currentIndexNotifier = ValueNotifier<int>(-1);
 
+  ConcatenatingAudioSource? _playlistSource;
+  List<int> _currentSongIds = [];
   bool _isInitialized = false;
 
   Future<void> init() async {
@@ -29,10 +32,24 @@ class AudioManager {
       final session = await AudioSession.instance;
       await session.configure(const AudioSessionConfiguration.music());
 
+      // Cho phép phát lặp toàn bộ playlist
+      await _player.setLoopMode(LoopMode.all);
+
+      // Lắng nghe trạng thái phát / tạm dừng
       _player.playerStateStream.listen((state) {
         isPlayingNotifier.value = state.playing;
         if (state.processingState == ProcessingState.completed) {
           playNext();
+        }
+      });
+
+      // Lắng nghe sự kiện chuyển bài hát (từ Lock Screen, Control Center, Dynamic Island, hoặc tự động)
+      _player.currentIndexStream.listen((index) {
+        if (index != null &&
+            index >= 0 &&
+            index < currentPlaylistNotifier.value.length) {
+          currentIndexNotifier.value = index;
+          currentSongNotifier.value = currentPlaylistNotifier.value[index];
         }
       });
 
@@ -42,15 +59,57 @@ class AudioManager {
     }
   }
 
+  AudioSource _createAudioSource(Song song) {
+    const fallbackArt = 'https://qhun22.github.io/AppMusic/var.jpg';
+    final artUriString = (song.artUrl != null && song.artUrl!.isNotEmpty)
+        ? song.artUrl!
+        : fallbackArt;
+
+    return AudioSource.uri(
+      Uri.parse(song.url),
+      tag: MediaItem(
+        id: song.id.toString(),
+        album: song.type ?? 'qhun22Music', // Remix hoặc Lofi
+        title: song.title,
+        artUri: Uri.parse(artUriString), // Link ảnh bìa
+      ),
+    );
+  }
+
+  ConcatenatingAudioSource _buildPlaylistSource(List<Song> playlist) {
+    return ConcatenatingAudioSource(
+      useLazyPreparation: true,
+      children: playlist.map((s) => _createAudioSource(s)).toList(),
+    );
+  }
+
   Future<void> playSong(Song song, List<Song> playlist) async {
     await init();
     try {
-      currentPlaylistNotifier.value = playlist;
-      final index = playlist.indexWhere((s) => s.id == song.id);
-      currentIndexNotifier.value = index >= 0 ? index : 0;
-      currentSongNotifier.value = song;
+      final safePlaylist = playlist.isNotEmpty ? playlist : [song];
+      currentPlaylistNotifier.value = safePlaylist;
 
-      await _player.setUrl(song.url);
+      final targetIndex = safePlaylist.indexWhere((s) => s.id == song.id);
+      final index = targetIndex >= 0 ? targetIndex : 0;
+      currentIndexNotifier.value = index;
+      currentSongNotifier.value = safePlaylist[index];
+
+      final newIds = safePlaylist.map((s) => s.id).toList();
+      final isSamePlaylist =
+          listEquals(_currentSongIds, newIds) && _playlistSource != null;
+
+      if (isSamePlaylist) {
+        await _player.seek(Duration.zero, index: index);
+      } else {
+        _currentSongIds = newIds;
+        _playlistSource = _buildPlaylistSource(safePlaylist);
+        await _player.setAudioSource(
+          _playlistSource!,
+          initialIndex: index,
+          initialPosition: Duration.zero,
+        );
+      }
+
       await _player.play();
     } catch (e) {
       debugPrint('Error playing song (${song.title}): $e');
@@ -69,26 +128,24 @@ class AudioManager {
     final list = currentPlaylistNotifier.value;
     if (list.isEmpty) return;
 
-    int nextIndex = currentIndexNotifier.value + 1;
-    if (nextIndex >= list.length) {
-      nextIndex = 0; // Vòng lặp lại từ đầu danh sách
+    if (_player.hasNext) {
+      await _player.seekToNext();
+    } else {
+      await _player.seek(Duration.zero, index: 0);
     }
-
-    final nextSong = list[nextIndex];
-    await playSong(nextSong, list);
   }
 
   Future<void> playPrevious() async {
     final list = currentPlaylistNotifier.value;
     if (list.isEmpty) return;
 
-    int prevIndex = currentIndexNotifier.value - 1;
-    if (prevIndex < 0) {
-      prevIndex = list.length - 1;
+    if (_player.position.inSeconds > 3) {
+      await _player.seek(Duration.zero);
+    } else if (_player.hasPrevious) {
+      await _player.seekToPrevious();
+    } else {
+      await _player.seek(Duration.zero, index: list.length - 1);
     }
-
-    final prevSong = list[prevIndex];
-    await playSong(prevSong, list);
   }
 
   Future<void> seek(Duration position) async {

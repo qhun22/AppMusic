@@ -15,7 +15,7 @@ workflows:
           # 1. Tắt Swift Package Manager để dùng CocoaPods ổn định
           flutter config --no-enable-swift-package-manager
 
-          # 2. Xóa cấu trúc iOS cũ chưa hoàn thiện và sinh mới hoàn toàn từ Flutter SDK
+          # 2. Xóa cấu trúc iOS cũ và sinh mới từ Flutter SDK
           rm -rf ios
           flutter create --platforms=ios --org com.qhun22 .
 
@@ -36,18 +36,43 @@ workflows:
           pod install --repo-update
           cd ..
 
-      - name: 2. Biên dịch Flutter iOS Release (No Codesign)
+      - name: 2. Biên dịch iOS Release Unsigned (Không cần tài khoản Apple Developer)
         script: |
-          flutter config --no-enable-swift-package-manager
-          flutter build ios --release --no-codesign
+          # Bật cấu hình không ký mã trong xcconfig
+          echo "CODE_SIGNING_ALLOWED=NO" >> ios/Flutter/Release.xcconfig
+          echo "CODE_SIGNING_REQUIRED=NO" >> ios/Flutter/Release.xcconfig
+          echo "CODE_SIGN_IDENTITY=" >> ios/Flutter/Release.xcconfig
+
+          # Chuẩn bị mã nguồn Flutter và AOT snapshot
+          flutter build ios --release --config-only
+
+          # Biên dịch trực tiếp qua xcodebuild bỏ qua yêu cầu Development Team của Apple
+          xcodebuild -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            CONFIGURATION_BUILD_DIR=build/ios/iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
 
       - name: 3. Đóng gói file .ipa chuẩn TrollStore
         script: |
           echo "Bắt đầu đóng gói Payload..."
           mkdir -p Payload
-          cp -r build/ios/iphoneos/Runner.app Payload/
+
+          RUNNER_PATH=$(find build -name "Runner.app" -type d | head -n 1)
+          if [ -z "$RUNNER_PATH" ]; then
+            echo "Lỗi: Không tìm thấy Runner.app trong thư mục build!"
+            exit 1
+          fi
+
+          echo "Tìm thấy Runner.app tại: $RUNNER_PATH"
+          cp -r "$RUNNER_PATH" Payload/
           zip -r -9 qhun22Music_TrollStore.ipa Payload
-          echo "Kích thước file IPA:"
+          echo "Đóng gói hoàn tất! Kích thước file IPA:"
           ls -lh qhun22Music_TrollStore.ipa
 
     artifacts:

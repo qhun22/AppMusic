@@ -28,6 +28,7 @@ workflows:
           /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSAllowsArbitraryLoads bool true" ios/Runner/Info.plist 2>/dev/null || true
 
           # 4. Tải dependencies và tạo App Icon từ assets/var.jpg
+          mkdir -p assets
           cp ../QHUN22-min.gif assets/ 2>/dev/null || true
           flutter pub get
           dart run flutter_launcher_icons

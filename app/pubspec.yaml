@@ -23,12 +23,12 @@ dev_dependencies:
 
 flutter_launcher_icons:
   ios: true
-  image_path_ios: "assets/QHUN22.png"
+  image_path_ios: "assets/var.jpg"
   remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/QHUN22.png
+    - assets/var.jpg
     - assets/qhun22-min.gif
 

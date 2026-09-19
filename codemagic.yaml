@@ -38,21 +38,19 @@ workflows:
 
       - name: 2. Biên dịch iOS Release Unsigned (Không cần tài khoản Apple Developer)
         script: |
-          # Bật cấu hình không ký mã trong xcconfig
+          # Bật cấu hình không ký mã và đặt dummy team trong xcconfig
           echo "CODE_SIGNING_ALLOWED=NO" >> ios/Flutter/Release.xcconfig
           echo "CODE_SIGNING_REQUIRED=NO" >> ios/Flutter/Release.xcconfig
           echo "CODE_SIGN_IDENTITY=" >> ios/Flutter/Release.xcconfig
+          echo "DEVELOPMENT_TEAM=0000000000" >> ios/Flutter/Release.xcconfig
 
-          # Chuẩn bị mã nguồn Flutter và AOT snapshot
-          flutter build ios --release --config-only
-
-          # Biên dịch trực tiếp qua xcodebuild bỏ qua yêu cầu Development Team của Apple
-          xcodebuild -workspace ios/Runner.xcworkspace \
+          # Biên dịch iOS release unsigned (giữ nguyên cấu trúc CocoaPods)
+          flutter build ios --release --no-codesign || xcodebuild \
+            -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
             -sdk iphoneos \
-            -destination 'generic/platform=iOS' \
-            CONFIGURATION_BUILD_DIR=build/ios/iphoneos \
+            -derivedDataPath build/DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \

@@ -51,13 +51,13 @@ jobs:
           echo "Bắt đầu đóng gói file IPA..."
           mkdir -p Payload
           cp -r build/ios/iphoneos/Runner.app Payload/
-          zip -r -9 MusicPlayer_TrollStore.ipa Payload
+          zip -r -9 qhun22Music_TrollStore.ipa Payload
           echo "Đóng gói hoàn tất! Kích thước file IPA:"
-          ls -lh MusicPlayer_TrollStore.ipa
+          ls -lh qhun22Music_TrollStore.ipa
 
       - name: 7. Tải file IPA lên Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: MusicPlayer_TrollStore_v${{ github.event.inputs.build_name || '1.0.0' }}
-          path: app/MusicPlayer_TrollStore.ipa
+          name: qhun22Music_TrollStore_v${{ github.event.inputs.build_name || '1.0.0' }}
+          path: app/qhun22Music_TrollStore.ipa
           retention-days: 14

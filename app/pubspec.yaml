@@ -1,5 +1,5 @@
-name: music_player_app
-description: "A lightweight personal music player for iOS TrollStore"
+name: qhun22music
+description: "qhun22Music - A personal music player for iOS TrollStore"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -21,3 +21,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/var.jpg
+

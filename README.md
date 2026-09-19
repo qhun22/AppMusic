@@ -1,4 +1,4 @@
-# 🎵 Music Hub - Kho Nhạc Cá Nhân & Ứng Dụng iOS TrollStore
+# 🎵 qhun22Music - Kho Nhạc Cá Nhân & Ứng Dụng iOS TrollStore
 
 Hệ thống phát nhạc cá nhân **100% serverless**, không cần backend hay database. Dữ liệu nhạc được lưu trữ tĩnh qua **GitHub Pages**, quản lý danh sách bằng trang web tĩnh **index.html**, và ứng dụng phát nhạc **Flutter iOS** được tự động đóng gói thành file **`.ipa` unsigned** thông qua GitHub Actions để cài đặt trực tiếp qua **TrollStore**.
 
@@ -103,16 +103,16 @@ appmusic/
 2. Ở cột bên trái, chọn workflow **Build iOS IPA for TrollStore**.
 3. Bấm vào nút **Run workflow** ➔ Chọn nhánh `main` ➔ Bấm **Run workflow**.
 4. Chờ khoảng 4 - 6 phút để máy ảo macOS tải Flutter, biên dịch và đóng gói file `.ipa`.
-5. Khi workflow hoàn tất (hiện dấu tích xanh ✅), bấm vào bản build vừa chạy và cuộn xuống mục **Artifacts** để tải file `.zip` chứa `MusicPlayer_TrollStore.ipa`.
+5. Khi workflow hoàn tất (hiện dấu tích xanh ✅), bấm vào bản build vừa chạy và cuộn xuống mục **Artifacts** để tải file `.zip` chứa `qhun22Music_TrollStore.ipa`.
 
 ---
 
 ### Bước 4: Cài đặt lên iPhone qua TrollStore
-1. Giải nén file `.zip` vừa tải về trên máy tính hoặc gửi thẳng file `MusicPlayer_TrollStore.ipa` sang iPhone (qua AirDrop, iCloud Drive, Telegram hoặc Safari).
+1. Giải nén file `.zip` vừa tải về trên máy tính hoặc gửi thẳng file `qhun22Music_TrollStore.ipa` sang iPhone (qua AirDrop, iCloud Drive, Telegram hoặc Safari).
 2. Mở ứng dụng **TrollStore** trên iPhone:
-   - Bấm dấu `+` ở góc trên bên phải ➔ Chọn **Install IPA File** ➔ Chọn file `MusicPlayer_TrollStore.ipa`.
-3. Mở ứng dụng **Music Vault** trên màn hình chính:
+   - Bấm dấu `+` ở góc trên bên phải ➔ Chọn **Install IPA File** ➔ Chọn file `qhun22Music_TrollStore.ipa`.
+3. Mở ứng dụng **qhun22Music** trên màn hình chính:
    - Bấm biểu tượng ⚙️ (Cài đặt) ở góc trên bên phải.
-   - Nhập URL GitHub Pages của bạn: `https://<TÊN_GITHUB>.github.io/<TÊN_REPO>`.
+   - Nhập URL GitHub Pages của bạn: `https://qhun22.github.io/AppMusic`.
    - Bấm **Lưu & Tải lại**.
 4. Ứng dụng sẽ lập tức nạp danh sách bài hát và bạn có thể thưởng thức kho nhạc của riêng mình ngay cả khi khóa màn hình!

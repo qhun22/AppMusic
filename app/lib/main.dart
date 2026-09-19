@@ -23,7 +23,7 @@ class MusicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Music Vault',
+      title: 'qhun22Music',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -213,19 +213,28 @@ class _HomeScreenState extends State<HomeScreen>
       appBar: AppBar(
         title: Row(
           children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF6366F1), Color(0xFFA855F7)],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/var.jpg',
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF6366F1), Color(0xFFA855F7)],
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.music_note, size: 18, color: Colors.white),
                 ),
-                borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(Icons.music_note, size: 20, color: Colors.white),
             ),
             const SizedBox(width: 10),
             const Text(
-              'Music Vault',
+              'qhun22Music',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
             ),
           ],
@@ -516,16 +525,25 @@ class _HomeScreenState extends State<HomeScreen>
                       const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   child: Row(
                     children: [
-                      Container(
-                        width: 42,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF6366F1), Color(0xFFA855F7)],
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/var.jpg',
+                          width: 42,
+                          height: 42,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Container(
+                            width: 42,
+                            height: 42,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF6366F1), Color(0xFFA855F7)],
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Icon(Icons.music_note, color: Colors.white),
                           ),
-                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.music_note, color: Colors.white),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -634,9 +652,6 @@ class FullPlayerSheet extends StatelessWidget {
                 height: 220,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: const RadialGradient(
-                    colors: [Color(0xFF262F47), Color(0xFF161B27)],
-                  ),
                   border: Border.all(color: const Color(0xFF6366F1), width: 3),
                   boxShadow: [
                     BoxShadow(
@@ -646,8 +661,23 @@ class FullPlayerSheet extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Icon(Icons.music_note, size: 80, color: Colors.white70),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/var.jpg',
+                    width: 220,
+                    height: 220,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      decoration: const BoxDecoration(
+                        gradient: RadialGradient(
+                          colors: [Color(0xFF262F47), Color(0xFF161B27)],
+                        ),
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.music_note, size: 80, color: Colors.white70),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 32),

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Hub - Kho Nhạc Cá Nhân & Quản Trị Tĩnh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-secondary: #12161f;
+      --bg-card: rgba(22, 27, 39, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(99, 102, 241, 0.4);
+      --accent-primary: #6366f1;
+      --accent-secondary: #a855f7;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(20px);
+      background: rgba(10, 12, 16, 0.75);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 32px;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+    }
+
+    .brand-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .repo-config {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .repo-config label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .repo-config input {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+      width: 130px;
+    }
+
+    .repo-config input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+
+    .container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 28px;
+      flex: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+      }
+      header {
+        padding: 16px 20px;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .card-title svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-primary);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(10, 12, 16, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .file-dropzone {
+      border: 2px dashed rgba(99, 102, 241, 0.4);
+      background: rgba(99, 102, 241, 0.04);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .file-dropzone:hover {
+      border-color: var(--accent-primary);
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    .file-dropzone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file-dropzone svg {
+      width: 32px;
+      height: 32px;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+    }
+
+    .file-dropzone p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .file-dropzone p strong {
+      color: var(--text-main);
+    }
+
+    .url-preview {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: #38bdf8;
+      word-break: break-all;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-group-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    /* Right Column Styling */
+    .tabs-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-primary);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.35);
+    }
+
+    .tab-badge {
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .tab-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      width: auto;
+      border-radius: var(--radius-sm);
+    }
+
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 700px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .song-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .song-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    .song-card {
+      background: rgba(18, 22, 31, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition);
+    }
+
+    .song-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .song-id {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .song-info {
+      overflow: hidden;
+    }
+
+    .song-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 6px;
+    }
+
+    .song-url {
+      font-size: 0.74rem;
+      color: var(--text-dim);
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+
+    .song-url:hover {
+      color: var(--accent-primary);
+      text-decoration: underline;
+    }
+
+    .song-player-container {
+      margin-top: 8px;
+    }
+
+    audio {
+      width: 100%;
+      height: 32px;
+      outline: none;
+      filter: invert(0.9) hue-rotate(180deg);
+      border-radius: 20px;
+    }
+
+    .song-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .btn-icon:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-icon-copy:hover {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent-primary);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      color: var(--text-dim);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--success);
+    }
+
+    .toast.error {
+      border-left: 4px solid var(--danger);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        </div>
+        <div>
+          <h1>Music Hub Admin</h1>
+          <span>GitHub Pages Static Music Manager</span>
+        </div>
+      </div>
+
+      <div class="repo-config">
+        <label>GitHub:</label>
+        <input type="text" id="cfgUsername" placeholder="qhun22" title="GitHub Username">
+        <span style="color: var(--text-dim)">/</span>
+        <input type="text" id="cfgRepo" placeholder="AppMusic" title="Repository Name">
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- CỘT TRÁI: FORM THÊM & XUẤT JSON -->
+    <section>
+      <!-- Form thêm bài -->
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Thêm Bài Hát Mới
+        </div>
+
+        <div class="form-group">
+          <label>1. Chọn file MP3</label>
+          <div class="file-dropzone" id="dropzone">
+            <input type="file" id="fileInput" accept=".mp3,audio/mpeg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <p><strong id="fileNotice">Kéo thả file MP3 vào đây</strong> hoặc bấm để duyệt</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="songTitle">2. Tên hiển thị bài hát</label>
+          <input type="text" id="songTitle" class="form-control" placeholder="VD: Waiting For You (Remix)">
+        </div>
+
+        <div class="form-group">
+          <label for="songFilename">3. Tên file lưu trữ trên GitHub</label>
+          <input type="text" id="songFilename" class="form-control" placeholder="VD: waiting_for_you_remix.mp3">
+        </div>
+
+        <div class="form-group">
+          <label for="songGenre">4. Thể loại</label>
+          <select id="songGenre" class="form-control">
+            <option value="remix">Remix (songs/remix/)</option>
+            <option value="lofi">Lofi (songs/lofi/)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>URL tĩnh sẽ phát sinh:</label>
+          <div class="url-preview" id="urlPreview">https://username.github.io/repo/songs/remix/...</div>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btnAddSong">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Thêm vào danh sách tạm thời
+        </button>
+      </div>
+
+      <!-- Card Xuất JSON & Đồng bộ -->
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Xuất File JSON Đã Cập Nhật
+        </div>
+        <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5;">
+          Tải file JSON về máy sau khi thêm/xóa bài rồi commit đè lên file <code>remix.json</code> hoặc <code>lofi.json</code> trong kho GitHub.
+        </p>
+
+        <div class="btn-group-grid">
+          <button type="button" class="btn btn-secondary" id="btnDownloadRemix">
+            Tải remix.json
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnDownloadLofi">
+            Tải lofi.json
+          </button>
+        </div>
+
+        <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 14px;">
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Nhập JSON có sẵn từ máy:</label>
+          <input type="file" id="importJsonInput" accept=".json" style="font-size: 0.8rem; color: var(--text-muted); width: 100%;">
+        </div>
+      </div>
+    </section>
+
+    <!-- CỘT PHẢI: QUẢN LÝ DANH SÁCH & NGHE THỬ -->
+    <section>
+      <div class="card">
+        <div class="tabs-wrapper">
+          <div class="tabs">
+            <button class="tab-btn active" id="tabRemix" data-tab="remix">
+              Remix <span class="tab-badge" id="badgeRemix">0</span>
+            </button>
+            <button class="tab-btn" id="tabLofi" data-tab="lofi">
+              Lofi <span class="tab-badge" id="badgeLofi">0</span>
+            </button>
+          </div>
+
+          <div class="tab-actions">
+            <button class="btn btn-secondary btn-sm" id="btnReloadRepo" title="Fetch lại từ GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              Tải lại từ Repo
+            </button>
+          </div>
+        </div>
+
+        <!-- Song list container -->
+        <div class="song-list" id="songListContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Music Hub Static Manager &bull; Không cần Server / Database &bull; Hỗ trợ iOS TrollStore
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // State management
+    const state = {
+      activeTab: 'remix',
+      songs: {
+        remix: [],
+        lofi: []
+      },
+      config: {
+        username: 'username',
+        repo: 'repo'
+      }
+    };
+
+    // DOM Elements
+    const cfgUsername = document.getElementById('cfgUsername');
+    const cfgRepo = document.getElementById('cfgRepo');
+    const fileInput = document.getElementById('fileInput');
+    const fileNotice = document.getElementById('fileNotice');
+    const songTitle = document.getElementById('songTitle');
+    const songFilename = document.getElementById('songFilename');
+    const songGenre = document.getElementById('songGenre');
+    const urlPreview = document.getElementById('urlPreview');
+    const btnAddSong = document.getElementById('btnAddSong');
+    const tabRemix = document.getElementById('tabRemix');
+    const tabLofi = document.getElementById('tabLofi');
+    const badgeRemix = document.getElementById('badgeRemix');
+    const badgeLofi = document.getElementById('badgeLofi');
+    const songListContainer = document.getElementById('songListContainer');
+    const btnDownloadRemix = document.getElementById('btnDownloadRemix');
+    const btnDownloadLofi = document.getElementById('btnDownloadLofi');
+    const btnReloadRepo = document.getElementById('btnReloadRepo');
+    const importJsonInput = document.getElementById('importJsonInput');
+    const toast = document.getElementById('toast');
+
+    // Auto-detect GitHub username and repo from URL if hosted on github.io
+    function initRepoConfig() {
+      const hostname = window.location.hostname;
+      const pathname = window.location.pathname.split('/').filter(Boolean);
+
+      let savedUser = localStorage.getItem('music_hub_gh_user');
+      let savedRepo = localStorage.getItem('music_hub_gh_repo');
+
+      if (!savedUser && hostname.endsWith('.github.io')) {
+        savedUser = hostname.split('.')[0];
+      }
+      if (!savedRepo && pathname.length > 0) {
+        savedRepo = pathname[0];
+      }
+
+      state.config.username = savedUser || 'qhun22';
+      state.config.repo = savedRepo || 'AppMusic';
+
+      cfgUsername.value = state.config.username;
+      cfgRepo.value = state.config.repo;
+
+      updateUrlPreview();
+    }
+
+    function saveConfig() {
+      state.config.username = cfgUsername.value.trim() || 'qhun22';
+      state.config.repo = cfgRepo.value.trim() || 'AppMusic';
+      localStorage.setItem('music_hub_gh_user', state.config.username);
+      localStorage.setItem('music_hub_gh_repo', state.config.repo);
+      updateUrlPreview();
+    }
+
+    cfgUsername.addEventListener('input', saveConfig);
+    cfgRepo.addEventListener('input', saveConfig);
+
+    // Update real-time URL preview
+    function updateUrlPreview() {
+      const genre = songGenre.value;
+      const filename = songFilename.value.trim() || 'example.mp3';
+      const safeFilename = filename.endsWith('.mp3') ? filename : `${filename}.mp3`;
+      const url = `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(safeFilename)}`;
+      urlPreview.textContent = url;
+    }
+
+    songGenre.addEventListener('change', updateUrlPreview);
+    songFilename.addEventListener('input', updateUrlPreview);
+
+    // File input handler: auto-extract song title and clean filename
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      fileNotice.textContent = file.name;
+      // Strip .mp3 extension
+      const rawName = file.name.replace(/\.[^/.]+$/, "");
+      songTitle.value = rawName;
+
+      // Clean storage filename (convert spaces to underscores or preserve clean characters)
+      const cleanFilename = file.name.replace(/\s+/g, '_');
+      songFilename.value = cleanFilename;
+
+      updateUrlPreview();
+    });
+
+    // Show Toast Notification
+    function showToast(message, type = 'success') {
+      toast.textContent = message;
+      toast.className = `toast show ${type}`;
+      setTimeout(() => {
+        toast.className = 'toast';
+      }, 3000);
+    }
+
+    // Add song to current list
+    btnAddSong.addEventListener('click', () => {
+      const title = songTitle.value.trim();
+      let filename = songFilename.value.trim();
+      const genre = songGenre.value;
+
+      if (!title) {
+        showToast('Vui lòng nhập tên hiển thị bài hát!', 'error');
+        return;
+      }
+      if (!filename) {
+        showToast('Vui lòng nhập tên file MP3!', 'error');
+        return;
+      }
+
+      if (!filename.endsWith('.mp3')) {
+        filename += '.mp3';
+      }
+
+      const songUrl = `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(filename)}`;
+
+      const currentList = state.songs[genre];
+      // Generate auto-increment ID
+      const maxId = currentList.length > 0 ? Math.max(...currentList.map(s => s.id || 0)) : 0;
+      const newSong = {
+        id: maxId + 1,
+        title: title,
+        url: songUrl
+      };
+
+      // Add to front of array (newest first)
+      currentList.unshift(newSong);
+
+      // Switch to that genre's tab to show immediately
+      switchTab(genre);
+      renderList();
+      showToast(`Đã thêm "${title}" vào danh sách ${genre.toUpperCase()}!`);
+
+      // Reset input fields
+      songTitle.value = '';
+      songFilename.value = '';
+      fileInput.value = '';
+      fileNotice.innerHTML = '<strong>Kéo thả file MP3 vào đây</strong> hoặc bấm để duyệt';
+      updateUrlPreview();
+    });
+
+    // Switch Tab
+    function switchTab(tab) {
+      state.activeTab = tab;
+      if (tab === 'remix') {
+        tabRemix.classList.add('active');
+        tabLofi.classList.remove('active');
+      } else {
+        tabLofi.classList.add('active');
+        tabRemix.classList.remove('active');
+      }
+      renderList();
+    }
+
+    tabRemix.addEventListener('click', () => switchTab('remix'));
+    tabLofi.addEventListener('click', () => switchTab('lofi'));
+
+    // Render song list in right column
+    function renderList() {
+      badgeRemix.textContent = state.songs.remix.length;
+      badgeLofi.textContent = state.songs.lofi.length;
+
+      const list = state.songs[state.activeTab];
+      songListContainer.innerHTML = '';
+
+      if (list.length === 0) {
+        songListContainer.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M10 15l5-3-5-3v6z"/></svg>
+            <p>Chưa có bài hát nào trong thể loại <strong>${state.activeTab.toUpperCase()}</strong></p>
+            <p style="font-size: 0.8rem; margin-top: 6px;">Thêm bài hát mới ở cột bên trái hoặc tải lại từ Repo.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach((song, index) => {
+        const item = document.createElement('div');
+        item.className = 'song-card';
+        item.innerHTML = `
+          <div class="song-id">#${song.id}</div>
+          <div class="song-info">
+            <div class="song-title" title="${escapeHtml(song.title)}">${escapeHtml(song.title)}</div>
+            <div class="song-url" onclick="copyToClipboard('${escapeHtml(song.url)}')" title="Bấm để copy link">${escapeHtml(song.url)}</div>
+            <div class="song-player-container">
+              <audio controls preload="none" src="${escapeHtml(song.url)}"></audio>
+            </div>
+          </div>
+          <div class="song-actions">
+            <button class="btn-icon btn-icon-copy" onclick="copyToClipboard('${escapeHtml(song.url)}')" title="Sao chép liên kết">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+            <button class="btn-icon" onclick="removeSong('${state.activeTab}', ${song.id})" title="Xóa bài này">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </button>
+          </div>
+        `;
+        songListContainer.appendChild(item);
+      });
+    }
+
+    // Helper functions
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
+
+    window.removeSong = function(genre, id) {
+      if (confirm('Bạn có chắc muốn xóa bài hát này khỏi danh sách?')) {
+        state.songs[genre] = state.songs[genre].filter(s => s.id !== id);
+        renderList();
+        showToast('Đã xóa bài hát khỏi danh sách!');
+      }
+    };
+
+    window.copyToClipboard = function(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Đã copy đường dẫn bài hát!');
+      }).catch(() => {
+        showToast('Không thể sao chép!', 'error');
+      });
+    };
+
+    // Download JSON Helper
+    function downloadJSON(filename, data) {
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Đã xuất file ${filename}!`);
+    }
+
+    btnDownloadRemix.addEventListener('click', () => {
+      downloadJSON('remix.json', state.songs.remix);
+    });
+
+    btnDownloadLofi.addEventListener('click', () => {
+      downloadJSON('lofi.json', state.songs.lofi);
+    });
+
+    // Import existing JSON
+    importJsonInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const parsed = JSON.parse(event.target.result);
+          if (Array.isArray(parsed)) {
+            const genre = file.name.includes('lofi') ? 'lofi' : 'remix';
+            state.songs[genre] = parsed;
+            switchTab(genre);
+            renderList();
+            showToast(`Đã nạp thành công ${parsed.length} bài vào ${genre.toUpperCase()}!`);
+          } else {
+            showToast('Định dạng JSON không hợp lệ (cần là mảng bài hát)!', 'error');
+          }
+        } catch (err) {
+          showToast('Lỗi đọc file JSON!', 'error');
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    // Fetch data from GitHub repository with cache buster
+    async function loadDataFromRepo() {
+      const cacheBuster = `?t=${Date.now()}`;
+      try {
+        const [resRemix, resLofi] = await Promise.all([
+          fetch(`./remix.json${cacheBuster}`).catch(() => null),
+          fetch(`./lofi.json${cacheBuster}`).catch(() => null)
+        ]);
+
+        if (resRemix && resRemix.ok) {
+          state.songs.remix = await resRemix.json();
+        }
+        if (resLofi && resLofi.ok) {
+          state.songs.lofi = await resLofi.json();
+        }
+
+        renderList();
+        showToast('Đã tải danh sách bài hát từ Repository!');
+      } catch (e) {
+        console.warn('Could not auto-fetch json from relative path:', e);
+      }
+    }
+
+    btnReloadRepo.addEventListener('click', loadDataFromRepo);
+
+    // Initial load
+    initRepoConfig();
+    loadDataFromRepo();
+  </script>
+</body>
+</html>

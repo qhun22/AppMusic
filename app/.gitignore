@@ -1,0 +1,46 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Visual Studio Code related
+.vscode/
+
+# Flutter repo-specific
+/bin/cache/
+/packages/flutter_tools/test/data/create_flutter/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# iOS related
+**/ios/**/Generated.xcconfig
+**/ios/**/flutter_export_environment.sh
+**/ios/**/Flutter.framework
+**/ios/**/Flutter.podspec
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/profile
+**/ios/release
+**/ios/Runner.xcworkspace/xcuserdata

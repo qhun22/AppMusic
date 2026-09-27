@@ -14,6 +14,8 @@ Hệ thống phát nhạc cá nhân **100% serverless**, không cần backend ha
 2. **Trang web quản trị & nghe thử (`index.html`):**
    - Giao diện **Dark Theme Glassmorphism** hiện đại.
    - Tự động trích xuất tên bài hát và tạo tên file chuẩn khi chọn file MP3.
+   - **Gợi ý tên bài hát khi gõ (không phân biệt dấu):** gõ `mot` là ra `Một Đời`, kèm badge thể loại và `#id` để biết ngay bài đó đã có trong kho chưa; có cảnh báo **trùng tên** ngay dưới ô nhập và xác nhận trước khi thêm bài trùng.
+   - **Import JSON có sẵn:** chọn được cả `remix.json` và `lofi.json` cùng lúc, tự nhận diện thể loại, chọn chế độ *Ghi đè* hoặc *Thêm vào* (tự bỏ qua bài trùng, tự cấp lại `id`), và tự sửa các link hỏng dạng `.../D:/songs/lofi/...`.
    - Tự động sinh URL tĩnh GitHub Pages chuẩn xác.
    - Nghe thử trực tiếp với trình phát audio HTML5.
    - Xuất file `remix.json` và `lofi.json` chỉ với 1 click.

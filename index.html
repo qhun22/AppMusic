@@ -271,6 +271,139 @@
       margin-top: 8px;
     }
 
+    /* ===== Gợi ý tên bài hát (chống trùng) ===== */
+    .autocomplete {
+      position: relative;
+    }
+
+    .suggest-list {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background: rgba(18, 22, 31, 0.98);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(16px);
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .suggest-list.open {
+      display: block;
+    }
+
+    .suggest-head {
+      position: sticky;
+      top: 0;
+      padding: 8px 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      background: rgba(18, 22, 31, 0.98);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .suggest-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: background 0.15s ease;
+    }
+
+    .suggest-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggest-item:hover,
+    .suggest-item.active {
+      background: rgba(99, 102, 241, 0.16);
+    }
+
+    .suggest-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text-main);
+    }
+
+    .suggest-title mark {
+      background: rgba(168, 85, 247, 0.4);
+      color: #fff;
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
+    .suggest-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .suggest-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    .suggest-badge.genre-remix {
+      background: rgba(99, 102, 241, 0.22);
+      color: #c7d2fe;
+    }
+
+    .suggest-badge.genre-lofi {
+      background: rgba(16, 185, 129, 0.2);
+      color: #a7f3d0;
+    }
+
+    .dupe-alert {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.12);
+      color: #fecaca;
+    }
+
+    .dupe-alert.show {
+      display: flex;
+    }
+
+    .dupe-alert.ok {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: rgba(16, 185, 129, 0.08);
+      color: #a7f3d0;
+    }
+
+    .import-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -602,7 +735,11 @@
 
         <div class="form-group">
           <label for="songTitle">2. Tên hiển thị bài hát</label>
-          <input type="text" id="songTitle" class="form-control" placeholder="VD: Waiting For You (Remix)">
+          <div class="autocomplete">
+            <input type="text" id="songTitle" class="form-control" placeholder="VD: Một Đời (gõ &quot;mot&quot; cũng ra)" autocomplete="off" spellcheck="false">
+            <div class="suggest-list" id="titleSuggestions"></div>
+          </div>
+          <div class="dupe-alert" id="dupeAlert"></div>
         </div>
 
         <div class="form-group">
@@ -649,8 +786,22 @@
         </div>
 
         <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 14px;">
-          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Nhập JSON có sẵn từ máy:</label>
-          <input type="file" id="importJsonInput" accept=".json" style="font-size: 0.8rem; color: var(--text-muted); width: 100%;">
+          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Import JSON có sẵn từ máy (chọn được cả <code>remix.json</code> và <code>lofi.json</code> cùng lúc):</label>
+          <div class="import-options">
+            <select id="importGenre" class="form-control" title="Thể loại của file JSON được import">
+              <option value="auto">Thể loại: Tự nhận diện</option>
+              <option value="remix">Thể loại: Remix</option>
+              <option value="lofi">Thể loại: Lofi</option>
+            </select>
+            <select id="importMode" class="form-control" title="Cách ghi vào danh sách hiện tại">
+              <option value="replace">Chế độ: Ghi đè</option>
+              <option value="append">Chế độ: Thêm vào</option>
+            </select>
+          </div>
+          <input type="file" id="importJsonInput" accept=".json,application/json" multiple style="font-size: 0.8rem; color: var(--text-muted); width: 100%;">
+          <p style="font-size: 0.74rem; color: var(--text-dim); margin-top: 8px; line-height: 1.5;">
+            Link dạng <code>.../D:/songs/lofi/...</code> sẽ được tự động chuẩn hoá lại theo GitHub Username/Repo ở trên.
+          </p>
         </div>
       </div>
     </section>
@@ -723,6 +874,10 @@
     const btnDownloadLofi = document.getElementById('btnDownloadLofi');
     const btnReloadRepo = document.getElementById('btnReloadRepo');
     const importJsonInput = document.getElementById('importJsonInput');
+    const importGenre = document.getElementById('importGenre');
+    const importMode = document.getElementById('importMode');
+    const titleSuggestions = document.getElementById('titleSuggestions');
+    const dupeAlert = document.getElementById('dupeAlert');
     const toast = document.getElementById('toast');
 
     // Auto-detect GitHub username and repo from URL if hosted on github.io
@@ -760,13 +915,17 @@
     cfgUsername.addEventListener('input', saveConfig);
     cfgRepo.addEventListener('input', saveConfig);
 
+    // Build static GitHub Pages URL for a song file
+    function buildSongUrl(genre, filename) {
+      return `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(filename)}`;
+    }
+
     // Update real-time URL preview
     function updateUrlPreview() {
       const genre = songGenre.value;
       const filename = songFilename.value.trim() || 'example.mp3';
       const safeFilename = filename.endsWith('.mp3') ? filename : `${filename}.mp3`;
-      const url = `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(safeFilename)}`;
-      urlPreview.textContent = url;
+      urlPreview.textContent = buildSongUrl(genre, safeFilename);
     }
 
     songGenre.addEventListener('change', updateUrlPreview);
@@ -787,6 +946,177 @@
       songFilename.value = cleanFilename;
 
       updateUrlPreview();
+      // Báo ngay nếu tên bài vừa trích ra đã tồn tại trong kho
+      updateDupeAlert();
+    });
+
+    // ===== GỢI Ý TÊN BÀI HÁT + CẢNH BÁO TRÙNG TÊN =====
+    const suggestState = { items: [], activeIndex: -1 };
+
+    // Bỏ dấu tiếng Việt + lowercase, giữ nguyên độ dài chuỗi để highlight đúng vị trí
+    function normalizeVi(str) {
+      return (str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .toLowerCase()
+        .trim();
+    }
+
+    // Gộp tiêu đề của cả 2 thể loại để tra trùng (kể cả khác thể loại)
+    function collectAllTitles() {
+      const all = [];
+      ['remix', 'lofi'].forEach((genre) => {
+        (state.songs[genre] || []).forEach((song) => {
+          all.push({ id: song.id, title: song.title, url: song.url, genre: genre });
+        });
+      });
+      return all;
+    }
+
+    // Tên bài đã tồn tại y hệt (không phân biệt dấu / hoa thường)
+    function getExactDupe(title) {
+      const target = normalizeVi(title);
+      if (!target) return null;
+      return collectAllTitles().find((entry) => normalizeVi(entry.title) === target) || null;
+    }
+
+    // Tìm bài gần giống: ưu tiên khớp từ đầu tên, sau đó mới tới khớp giữa tên
+    function findTitleMatches(query) {
+      const q = normalizeVi(query);
+      if (!q) return [];
+      const startsWith = [];
+      const contains = [];
+      collectAllTitles().forEach((entry) => {
+        const pos = normalizeVi(entry.title).indexOf(q);
+        if (pos === 0) startsWith.push(entry);
+        else if (pos > 0) contains.push(entry);
+      });
+      return startsWith.concat(contains).slice(0, 8);
+    }
+
+    function highlightTitle(title, query) {
+      const q = normalizeVi(query);
+      const pos = q ? normalizeVi(title).indexOf(q) : -1;
+      if (pos < 0) return escapeHtml(title);
+      const end = pos + q.length;
+      return escapeHtml(title.slice(0, pos)) +
+        '<mark>' + escapeHtml(title.slice(pos, end)) + '</mark>' +
+        escapeHtml(title.slice(end));
+    }
+
+    function closeTitleSuggestions() {
+      titleSuggestions.classList.remove('open');
+      titleSuggestions.innerHTML = '';
+      suggestState.items = [];
+      suggestState.activeIndex = -1;
+    }
+
+    function renderTitleSuggestions(query) {
+      const keyword = (query || '').trim();
+      if (!keyword) {
+        closeTitleSuggestions();
+        return;
+      }
+
+      const matches = findTitleMatches(keyword);
+      suggestState.items = matches;
+      suggestState.activeIndex = -1;
+
+      if (matches.length === 0) {
+        closeTitleSuggestions();
+        return;
+      }
+
+      titleSuggestions.innerHTML =
+        `<div class="suggest-head">Có ${matches.length} bài khớp "${escapeHtml(keyword)}" trong kho</div>` +
+        matches.map((entry, i) => `
+          <div class="suggest-item" data-index="${i}" title="${escapeHtml(entry.title)}">
+            <div class="suggest-title">${highlightTitle(entry.title, keyword)}</div>
+            <div class="suggest-meta">
+              <span class="suggest-badge genre-${entry.genre}">${entry.genre}</span>
+              <span class="suggest-badge">#${entry.id}</span>
+            </div>
+          </div>
+        `).join('');
+
+      titleSuggestions.classList.add('open');
+    }
+
+    function pickSuggestion(entry) {
+      if (!entry) return;
+      songTitle.value = entry.title;
+      closeTitleSuggestions();
+      updateDupeAlert();
+      showToast(`"${entry.title}" đã có trong ${entry.genre.toUpperCase()} (#${entry.id})`, 'error');
+    }
+
+    function updateDupeAlert() {
+      const value = songTitle.value.trim();
+
+      if (!value) {
+        dupeAlert.className = 'dupe-alert';
+        dupeAlert.textContent = '';
+        return;
+      }
+
+      const dupe = getExactDupe(value);
+      if (dupe) {
+        dupeAlert.className = 'dupe-alert show';
+        dupeAlert.textContent = `Trùng tên: "${dupe.title}" đã tồn tại trong ${dupe.genre.toUpperCase()} (#${dupe.id}). Kiểm tra kỹ trước khi thêm!`;
+        return;
+      }
+
+      const nearCount = findTitleMatches(value).length;
+      dupeAlert.className = 'dupe-alert show ok';
+      dupeAlert.textContent = nearCount > 0
+        ? `Tên này chưa có trong kho, nhưng có ${nearCount} bài gần giống (xem gợi ý bên dưới ô nhập).`
+        : 'Tên này chưa có trong kho (đã tra cả remix + lofi).';
+    }
+
+    songTitle.addEventListener('input', () => {
+      renderTitleSuggestions(songTitle.value);
+      updateDupeAlert();
+    });
+
+    songTitle.addEventListener('focus', () => renderTitleSuggestions(songTitle.value));
+
+    songTitle.addEventListener('blur', () => setTimeout(closeTitleSuggestions, 120));
+
+    // Chọn gợi ý bằng chuột (dùng mousedown để không bị blur cắt mất)
+    titleSuggestions.addEventListener('mousedown', (e) => {
+      const item = e.target.closest('.suggest-item');
+      if (!item) return;
+      e.preventDefault();
+      pickSuggestion(suggestState.items[Number(item.dataset.index)]);
+    });
+
+    // Điều hướng gợi ý bằng bàn phím
+    songTitle.addEventListener('keydown', (e) => {
+      const isOpen = titleSuggestions.classList.contains('open');
+
+      if (!isOpen || suggestState.items.length === 0) {
+        if (e.key === 'Escape') closeTitleSuggestions();
+        return;
+      }
+
+      const nodes = Array.from(titleSuggestions.querySelectorAll('.suggest-item'));
+
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        let i = suggestState.activeIndex;
+        i = e.key === 'ArrowDown' ? Math.min(i + 1, nodes.length - 1) : Math.max(i - 1, 0);
+        suggestState.activeIndex = i;
+        nodes.forEach((node, idx) => node.classList.toggle('active', idx === i));
+        nodes[i].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const index = suggestState.activeIndex >= 0 ? suggestState.activeIndex : 0;
+        pickSuggestion(suggestState.items[index]);
+      } else if (e.key === 'Escape') {
+        closeTitleSuggestions();
+      }
     });
 
     // Show Toast Notification
@@ -817,7 +1147,13 @@
         filename += '.mp3';
       }
 
-      const songUrl = `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(filename)}`;
+      // Cảnh báo trùng tên trước khi thêm (vẫn cho phép nếu bạn xác nhận)
+      const dupe = getExactDupe(title);
+      if (dupe && !confirm(`"${title}" đã tồn tại trong ${dupe.genre.toUpperCase()} (#${dupe.id}). Vẫn thêm bài này?`)) {
+        return;
+      }
+
+      const songUrl = buildSongUrl(genre, filename);
 
       const currentList = state.songs[genre];
       // Generate auto-increment ID
@@ -841,6 +1177,8 @@
       songFilename.value = '';
       fileInput.value = '';
       fileNotice.innerHTML = '<strong>Kéo thả file MP3 vào đây</strong> hoặc bấm để duyệt';
+      closeTitleSuggestions();
+      updateDupeAlert();
       updateUrlPreview();
     });
 
@@ -902,6 +1240,11 @@
         `;
         songListContainer.appendChild(item);
       });
+
+      // Danh sách vừa đổi (thêm/xóa/import) thì làm mới luôn gợi ý đang mở
+      if (titleSuggestions.classList.contains('open')) {
+        renderTitleSuggestions(songTitle.value);
+      }
     }
 
     // Helper functions
@@ -950,29 +1293,156 @@
       downloadJSON('lofi.json', state.songs.lofi);
     });
 
-    // Import existing JSON
-    importJsonInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
+    // ===== IMPORT JSON remix.json / lofi.json có sẵn =====
+    function detectGenreFromFileName(fileName) {
+      const name = normalizeVi(fileName);
+      if (name.includes('lofi')) return 'lofi';
+      if (name.includes('remix')) return 'remix';
+      return null;
+    }
 
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const parsed = JSON.parse(event.target.result);
-          if (Array.isArray(parsed)) {
-            const genre = file.name.includes('lofi') ? 'lofi' : 'remix';
-            state.songs[genre] = parsed;
-            switchTab(genre);
-            renderList();
-            showToast(`Đã nạp thành công ${parsed.length} bài vào ${genre.toUpperCase()}!`);
-          } else {
-            showToast('Định dạng JSON không hợp lệ (cần là mảng bài hát)!', 'error');
-          }
-        } catch (err) {
-          showToast('Lỗi đọc file JSON!', 'error');
+    function detectGenreFromSongs(songs) {
+      const joined = songs.map((s) => (s && s.url ? String(s.url) : '')).join(' ').toLowerCase();
+      if (joined.includes('/songs/lofi/')) return 'lofi';
+      if (joined.includes('/songs/remix/')) return 'remix';
+      return null;
+    }
+
+    // Chuẩn hoá 1 phần tử trong file JSON về đúng dạng { id, title, url }
+    function normalizeSongEntry(raw) {
+      if (!raw || typeof raw !== 'object') return null;
+      const title = typeof raw.title === 'string' ? raw.title.trim() : '';
+      const url = typeof raw.url === 'string' ? raw.url.trim() : '';
+      if (!title || !url) return null;
+      const id = Number.parseInt(raw.id, 10);
+      return { id: Number.isFinite(id) && id > 0 ? id : null, title: title, url: url };
+    }
+
+    // Sửa link hỏng dạng https://user.github.io/D:/songs/lofi/... theo cấu hình hiện tại
+    function normalizeImportedUrl(url, genre) {
+      const marker = `/songs/${genre}/`;
+      const idx = url.indexOf(marker);
+      if (idx === -1) return { url: url, fixed: false };
+      const tail = url.slice(idx + marker.length);
+      const rebuilt = `https://${state.config.username}.github.io/${state.config.repo}${marker}${tail}`;
+      return { url: rebuilt, fixed: rebuilt !== url };
+    }
+
+    // Đảm bảo id không trùng nhau (file JSON cũ có thể bị trùng id)
+    function ensureUniqueIds(list) {
+      const used = new Set();
+      let nextId = list.reduce((max, s) => Math.max(max, Number(s.id) || 0), 0);
+      list.forEach((song) => {
+        if (!song.id || used.has(song.id)) {
+          nextId += 1;
+          song.id = nextId;
         }
-      };
-      reader.readAsText(file);
+        used.add(song.id);
+      });
+      return list;
+    }
+
+    // Ghi danh sách vừa import vào state theo chế độ Ghi đè / Thêm vào
+    function mergeIntoGenre(genre, incoming, mode) {
+      if (!Array.isArray(state.songs[genre])) state.songs[genre] = [];
+      const list = state.songs[genre];
+
+      if (mode === 'replace') {
+        state.songs[genre] = ensureUniqueIds(incoming.map((song) => ({ ...song })));
+        return { total: incoming.length, added: incoming.length, skipped: 0 };
+      }
+
+      let maxId = list.reduce((max, s) => Math.max(max, Number(s.id) || 0), 0);
+      const keys = new Set(list.map((s) => `${normalizeVi(s.title)}|${s.url}`));
+      let added = 0;
+      let skipped = 0;
+
+      incoming.forEach((song) => {
+        const key = `${normalizeVi(song.title)}|${song.url}`;
+        if (keys.has(key)) {
+          skipped += 1;
+          return;
+        }
+        keys.add(key);
+        maxId += 1;
+        list.push({ id: maxId, title: song.title, url: song.url });
+        added += 1;
+      });
+
+      return { total: incoming.length, added: added, skipped: skipped };
+    }
+
+    // Import existing JSON (chọn được nhiều file: remix.json + lofi.json cùng lúc)
+    importJsonInput.addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+      const forcedGenre = importGenre.value;   // auto | remix | lofi
+      const mode = importMode.value;           // replace | append
+      const touchedGenres = new Set();
+      const summary = [];
+      let hasError = false;
+
+      for (const file of files) {
+        let parsed;
+        try {
+          parsed = JSON.parse(await file.text());
+        } catch (err) {
+          summary.push(`${file.name}: lỗi cú pháp JSON`);
+          hasError = true;
+          continue;
+        }
+
+        if (!Array.isArray(parsed)) {
+          summary.push(`${file.name}: nội dung không phải mảng bài hát`);
+          hasError = true;
+          continue;
+        }
+
+        let genre = forcedGenre === 'auto' ? detectGenreFromFileName(file.name) : forcedGenre;
+        if (!genre) genre = detectGenreFromSongs(parsed);
+        if (!genre) {
+          summary.push(`${file.name}: không rõ thể loại (chọn Remix hoặc Lofi ở ô Thể loại)`);
+          hasError = true;
+          continue;
+        }
+
+        let fixedLinks = 0;
+        const valid = [];
+        parsed.forEach((raw) => {
+          const song = normalizeSongEntry(raw);
+          if (!song) return;
+          const normalized = normalizeImportedUrl(song.url, genre);
+          if (normalized.fixed) fixedLinks += 1;
+          song.url = normalized.url;
+          valid.push(song);
+        });
+
+        if (valid.length === 0) {
+          summary.push(`${file.name}: không có bài hợp lệ (mỗi bài cần có title và url)`);
+          hasError = true;
+          continue;
+        }
+
+        const result = mergeIntoGenre(genre, valid, mode);
+        touchedGenres.add(genre);
+
+        const action = mode === 'replace'
+          ? `ghi đè ${result.total} bài`
+          : `thêm ${result.added}, bỏ qua ${result.skipped} bài trùng`;
+        const fixedNote = fixedLinks > 0 ? `, sửa ${fixedLinks} link` : '';
+        summary.push(`${file.name} → ${genre.toUpperCase()}: ${action}${fixedNote}`);
+      }
+
+      importJsonInput.value = '';
+
+      if (touchedGenres.size === 1) {
+        switchTab([...touchedGenres][0]);
+      } else {
+        renderList();
+      }
+
+      updateDupeAlert();
+      showToast(`Import: ${summary.join(' | ')}`, hasError ? 'error' : 'success');
     });
 
     // Fetch data from GitHub repository with cache buster

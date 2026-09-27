@@ -1,157 +1,642 @@
 [
   {
-    "id": 31,
-    "title": "Vết Thương Trong Lòng - Thế Hoàng",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/VET%20THUONG%20TRONG%20LONG%20-%20THE%20HOANG%20_%20OFFICIAL%20LYRICS%20VIDEO.mp3"
+    "id": 1,
+    "title": "Vết Thương Trong Lòng",
+    "url": "https://qhun22.github.io/D:/songs/lofi/VET%20THUONG%20TRONG%20LONG%20-%20THE%20HOANG%20_%20OFFICIAL%20LYRICS%20VIDEO.mp3"
   },
   {
-    "id": 30,
+    "id": 2,
     "title": "Sớm Muộn Thì",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Duong%20Domic%2C%20Anh%20Trai%20Say%20Hi%20-%20Khong%20Thoi%20Gian%20x%20Som%20Muon%20Thi%20(PIZUH%20MASHUP).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Duong%20Domic%2C%20Anh%20Trai%20Say%20Hi%20-%20Khong%20Thoi%20Gian%20x%20Som%20Muon%20Thi%20(PIZUH%20MASHUP).mp3"
   },
   {
-    "id": 29,
+    "id": 3,
     "title": "Một Đời",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/'mot%20oi'%20-%2014%20Casper%20%26%20Bon%20Nghiem%20(feat.%20buitruonglinh)%20(Track%2003%20-%20Album%20'SO%20KHONG').mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/'mot%20oi'%20-%2014%20Casper%20%26%20Bon%20Nghiem%20(feat.%20buitruonglinh)%20(Track%2003%20-%20Album%20'SO%20KHONG').mp3"
   },
   {
-    "id": 28,
+    "id": 4,
     "title": "Người Tốt Nhất Cho Em",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/'Nguoi%20Tot%20Nhat%20Cho%20Em'%20-%2014%20Casper%20%26%20Bon%20Nghiem%20_%20Official%20MV.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/'Nguoi%20Tot%20Nhat%20Cho%20Em'%20-%2014%20Casper%20%26%20Bon%20Nghiem%20_%20Official%20MV.mp3"
   },
   {
-    "id": 27,
+    "id": 5,
     "title": "Enchanted",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/%5BLyrics%2BVietsub%5D%20Enchanted%20-%20Taylor%20Swift.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BLyrics%2BVietsub%5D%20Enchanted%20-%20Taylor%20Swift.mp3"
   },
   {
-    "id": 26,
+    "id": 6,
     "title": "Ăm Chã Húi",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/AM%20CHA%20HUI%20-%20LAM%20THAN%20LAN%20(Official%20Music%20Video)%20_%20KIND%20LABELS.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/AM%20CHA%20HUI%20-%20LAM%20THAN%20LAN%20(Official%20Music%20Video)%20_%20KIND%20LABELS.mp3"
   },
   {
-    "id": 25,
+    "id": 7,
     "title": "Đi Để Trở Về",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/I%20E%20TRO%20VE%20(%20LYRIC%20)%20-%20SOOBIN%20HOANG%20SON.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/I%20E%20TRO%20VE%20(%20LYRIC%20)%20-%20SOOBIN%20HOANG%20SON.mp3"
   },
   {
-    "id": 24,
+    "id": 8,
     "title": "Chúng Ta Không Thuộc Về Nhau",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Son%20Tung%20M-TP%20-%20'Chung%20Ta%20Khong%20Thuoc%20Ve%20Nhau'%20Lyrics%20(Color%20Coded%20Lyrics).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Son%20Tung%20M-TP%20-%20'Chung%20Ta%20Khong%20Thuoc%20Ve%20Nhau'%20Lyrics%20(Color%20Coded%20Lyrics).mp3"
   },
   {
-    "id": 23,
+    "id": 9,
     "title": "Forget About Her",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/TOULIVER%20X%20JUSTATEE%20-%20FORGET%20ABOUT%20HER%20(OFFICIAL%20MV).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/TOULIVER%20X%20JUSTATEE%20-%20FORGET%20ABOUT%20HER%20(OFFICIAL%20MV).mp3"
   },
   {
-    "id": 22,
+    "id": 10,
     "title": "Yêu Thương Ngày Đó",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/%5BLyrics%5D%20Yeu%20Thuong%20Ngay%20o%20-%20Soobin%20Hoang%20Son%20_%20OST%20Yeu%20Em%20Bat%20Chap.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BLyrics%5D%20Yeu%20Thuong%20Ngay%20o%20-%20Soobin%20Hoang%20Son%20_%20OST%20Yeu%20Em%20Bat%20Chap.mp3"
   },
   {
-    "id": 21,
+    "id": 11,
     "title": "Chugakusei Nikki",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Chugakusei%20Nikki%20()%20BGM%20OST%20-%20HARU%20YORU.AME%20WO%20YOROKOBU%20-%20MAIN%20THEME%20(%20-%20).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Chugakusei%20Nikki%20()%20BGM%20OST%20-%20HARU%20YORU.AME%20WO%20YOROKOBU%20-%20MAIN%20THEME%20(%20-%20).mp3"
   },
   {
-    "id": 20,
+    "id": 12,
     "title": "Mùa Đông",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/ERIK%20-%20'MUA%20ONG%20(WINTER)'%20(Official%20Audio).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/ERIK%20-%20'MUA%20ONG%20(WINTER)'%20(Official%20Audio).mp3"
   },
   {
-    "id": 19,
+    "id": 13,
     "title": "Wrong Times",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/PUPPY%20%26%20DANGRANGTO%20-%20WRONG%20TIMES%20_%20Live%20at%20LAB%20RADAR%20_%20ZLAB.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/PUPPY%20%26%20DANGRANGTO%20-%20WRONG%20TIMES%20_%20Live%20at%20LAB%20RADAR%20_%20ZLAB.mp3"
   },
   {
-    "id": 18,
+    "id": 14,
     "title": "Trân Trọng",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/hqhuy%20-%20tran%20trong%20(Official%20Lyric%20Video).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/hqhuy%20-%20tran%20trong%20(Official%20Lyric%20Video).mp3"
   },
   {
-    "id": 17,
+    "id": 15,
     "title": "Em Từng Là Cả Thế Giới Trong Anh",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/hqhuy%20-%20em%20tung%20la%20ca%20the%20gioi%20trong%20anh%20(Official%20Lyric%20Video).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/hqhuy%20-%20em%20tung%20la%20ca%20the%20gioi%20trong%20anh%20(Official%20Lyric%20Video).mp3"
   },
   {
     "id": 16,
     "title": "Past Life",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Ariana%20Grande%20-%20Past%20Life%20(Movie%20Soundtrack%20Version)%20(Orchestral).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ariana%20Grande%20-%20Past%20Life%20(Movie%20Soundtrack%20Version)%20(Orchestral).mp3"
   },
   {
-    "id": 15,
+    "id": 17,
     "title": "Vết Thương",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/fishy%20-%20VET%20THUONG%20-%20OFFICIAL%20MUSIC%20VIDEO.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/fishy%20-%20VET%20THUONG%20-%20OFFICIAL%20MUSIC%20VIDEO.mp3"
   },
   {
-    "id": 14,
+    "id": 18,
     "title": "Thằng Điên",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/THANG%20IEN%20_%20JUSTATEE%20x%20PHUONG%20LY%20_%20OFFICIAL%20MV.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/THANG%20IEN%20_%20JUSTATEE%20x%20PHUONG%20LY%20_%20OFFICIAL%20MV.mp3"
   },
   {
-    "id": 13,
+    "id": 19,
     "title": "Real Love",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Real%20Love%20(%20Official%20MV%20)%20-%20Kimmese%20%26%20JustaTee.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Real%20Love%20(%20Official%20MV%20)%20-%20Kimmese%20%26%20JustaTee.mp3"
   },
   {
-    "id": 12,
+    "id": 20,
     "title": "Nếu Em Còn Tồn Tại",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Neu%20Em%20Con%20Ton%20Tai%20-%20Trinh%20inh%20Quang%20__%20Lyrics%20Video.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Neu%20Em%20Con%20Ton%20Tai%20-%20Trinh%20inh%20Quang%20__%20Lyrics%20Video.mp3"
   },
   {
-    "id": 11,
+    "id": 21,
     "title": "Love Again Instrumental",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Love%20Again%20Instrumental%20(%20%20Instrumental).mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Love%20Again%20Instrumental%20(%20%20Instrumental).mp3"
   },
   {
-    "id": 10,
+    "id": 22,
     "title": "Seasons",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Rival%20%26%20Cadmium%20-%20Seasons%20(Lyrics%20_%20Lyrics%20Video)%20ft.%20Harley%20Bird.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Rival%20%26%20Cadmium%20-%20Seasons%20(Lyrics%20_%20Lyrics%20Video)%20ft.%20Harley%20Bird.mp3"
   },
   {
-    "id": 9,
+    "id": 23,
     "title": "First Love",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/First%20Love%20-%20Sad%20%26%20Emotional%20Piano%20Song%20Instrumental.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/First%20Love%20-%20Sad%20%26%20Emotional%20Piano%20Song%20Instrumental.mp3"
   },
   {
-    "id": 8,
+    "id": 24,
     "title": "Mùa Đông Cô Đơn",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/MUA%20ONG%20CO%20ON%20-%20SEANPOET%20x%20CONG%20PHUC%20_%20Official%20MV.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/MUA%20ONG%20CO%20ON%20-%20SEANPOET%20x%20CONG%20PHUC%20_%20Official%20MV.mp3"
   },
   {
-    "id": 7,
+    "id": 25,
     "title": "Được Ăn Cả Ngã Về Không",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/UOC%20AN%20CA%20NGA%20VE%20KHONG%20-%20VU%20DUY%20KHANH%20x%20THANH%20HUNG%20_Nguoi%20Roi%20Anh%20Luc%20Ben%20Anh%20Chi%20Co%20Nhung%20Kho%20Khan.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/UOC%20AN%20CA%20NGA%20VE%20KHONG%20-%20VU%20DUY%20KHANH%20x%20THANH%20HUNG%20_Nguoi%20Roi%20Anh%20Luc%20Ben%20Anh%20Chi%20Co%20Nhung%20Kho%20Khan.mp3"
   },
   {
-    "id": 6,
+    "id": 26,
     "title": "Khi Yêu Nào Đâu Ai Muốn",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/KHI%20YEU%20NAO%20AU%20AI%20MUON%20_%20TRINH%20THIEN%20AN%20_%20MUSIC%20VIDEO%20OFFICIAL.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/KHI%20YEU%20NAO%20AU%20AI%20MUON%20_%20TRINH%20THIEN%20AN%20_%20MUSIC%20VIDEO%20OFFICIAL.mp3"
   },
   {
-    "id": 5,
+    "id": 27,
     "title": "Ai Thật Lòng Thương Em",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Ai%20That%20Long%20Thuong%20Em%20-%20Ly%20Tuan%20Kiet%20HKT%20(OFFICIAL%20M_V)%20%23ATLTE.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ai%20That%20Long%20Thuong%20Em%20-%20Ly%20Tuan%20Kiet%20HKT%20(OFFICIAL%20M_V)%20%23ATLTE.mp3"
   },
   {
-    "id": 4,
+    "id": 28,
     "title": "Sự Thật Sau Một Lời Hứa",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/SU%20THAT%20SAU%20MOT%20LOI%20HUA%20-%20CHI%20DAN%20%5BMV%20OFFICIAL%5D.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/SU%20THAT%20SAU%20MOT%20LOI%20HUA%20-%20CHI%20DAN%20%5BMV%20OFFICIAL%5D.mp3"
   },
   {
-    "id": 3,
+    "id": 29,
     "title": "Em Vội Quên",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/EM%20VOI%20QUEN%20-%20GIA%20HUY%20_%20OFFICIAL%20MUSIC%20VIDEO.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/EM%20VOI%20QUEN%20-%20GIA%20HUY%20_%20OFFICIAL%20MUSIC%20VIDEO.mp3"
   },
   {
-    "id": 2,
+    "id": 30,
     "title": "Biết Đau Nhưng Vẫn Yêu",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/Biet%20au%20Nhung%20Van%20Yeu%20-%20Ho%20Gia%20Khanh%20%5B%20MV%20Official%20%5D%20_%20Nhac%20Tre%20Hay%20Nhat.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/Biet%20au%20Nhung%20Van%20Yeu%20-%20Ho%20Gia%20Khanh%20%5B%20MV%20Official%20%5D%20_%20Nhac%20Tre%20Hay%20Nhat.mp3"
   },
   {
-    "id": 1,
+    "id": 31,
     "title": "Thương Nhau Đến Thế",
-    "url": "https://qhun22.github.io/AppMusic/songs/lofi/THUONG%20NHAU%20EN%20THE%20-%20GIA%20HUY%20_%20OFFICIAL%20MUSIC%20VIDEO%20_%20Thuong%20Nhau%20en%20The%20Nhung%20Chi%20La%20a%20Tung.mp3"
+    "url": "https://qhun22.github.io/D:/songs/lofi/THUONG%20NHAU%20EN%20THE%20-%20GIA%20HUY%20_%20OFFICIAL%20MUSIC%20VIDEO%20_%20Thuong%20Nhau%20en%20The%20Nhung%20Chi%20La%20a%20Tung.mp3"
+  },
+  {
+    "id": 32,
+    "title": "Đến Khi Nào",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Yanbi%2C%20Kh%E1%BA%AFc%20Vi%E1%BB%87t%20-%20%C4%90%E1%BA%BEN%20KHI%20N%C3%80O%20(Cover)%20(Official%20Music%20Video).mp3"
+  },
+  {
+    "id": 33,
+    "title": "Chuyện Đôi Ta Hợp Tan",
+    "url": "https://qhun22.github.io/D:/songs/lofi/WinD%20-%20CHUY%E1%BB%86N%20%C4%90%C3%94I%20TA%20H%E1%BB%A2P%20TAN%20%5BOfficial%20Music%20Video%5D.mp3"
+  },
+  {
+    "id": 34,
+    "title": "Tránh Duyên",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Tr%C3%A1nh%20Duy%C3%AAn%20_%20%C4%90%C3%ACnh%20D%C5%A9ng%20_%20Official%20Music%20Video.mp3"
+  },
+  {
+    "id": 35,
+    "title": "Nỗi Đau Từ Một Người Đến Sau",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%E1%BB%97i%20%C4%90au%20T%E1%BB%AB%20M%E1%BB%99t%20Ng%C6%B0%E1%BB%9Di%20%C4%90%E1%BA%BFn%20Sau%20-%20%C4%90%C3%ACnh%20Phong%20_%20%5BLYRIC%20VIDEO%5D%20%23NDTMNDS.mp3"
+  },
+  {
+    "id": 36,
+    "title": "Nếu Những Tiếc Nuối",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%E1%BA%BFu%20Nh%E1%BB%AFng%20Ti%E1%BA%BFc%20Nu%E1%BB%91i%20_%20V%C5%A9.%20(Official%20MV)%20t%E1%BB%AB%20Album%20_B%E1%BA%A3o%20T%C3%A0ng%20C%E1%BB%A7a%20Nu%E1%BB%91i%20Ti%E1%BA%BFc.mp3"
+  },
+  {
+    "id": 37,
+    "title": "Không Buông",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Hngle%20-%20KH%C3%94NG%20BU%C3%94NG%20ft.%20Ari%20_%20Official%20Music%20Video.mp3"
+  },
+  {
+    "id": 38,
+    "title": "Em Là Ai Trong Đôi Mắt Anh",
+    "url": "https://qhun22.github.io/D:/songs/lofi/EM%20L%C3%80%20AI%20TRONG%20%C4%90%C3%94I%20M%E1%BA%AET%20ANH%20-%20NGUY%E1%BB%84N%20TRUNG%20%C4%90%E1%BB%A8C%20(Official%20MV%20Lyrics).mp3"
+  },
+  {
+    "id": 39,
+    "title": "No Broke Boys",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Disco%20Lines%20%26%20Tinashe%20-%20No%20Broke%20Boys%20(Lyrics).mp3"
+  },
+  {
+    "id": 40,
+    "title": "Để Dành Cho Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Dangrangto%20-%20'%C4%91%E1%BB%83%20d%C3%A0nh%20cho%20em'%20(Visualizer).mp3"
+  },
+  {
+    "id": 41,
+    "title": "Còn Gì Đẹp Hơn",
+    "url": "https://qhun22.github.io/D:/songs/lofi/C%C3%B2n%20g%C3%AC%20%C4%91%E1%BA%B9p%20h%C6%A1n%20-%20Nguy%E1%BB%85n%20H%C3%B9ng%20_%20Lyrics%20Video.mp3"
+  },
+  {
+    "id": 42,
+    "title": "Có Ai Hẹn Hò Cùng Em Chưa",
+    "url": "https://qhun22.github.io/D:/songs/lofi/C%C3%93%20AI%20H%E1%BA%B8N%20H%C3%92%20C%C3%99NG%20EM%20CH%C6%AFA%20_%20QU%C3%82N%20A.P%20_%20OFFICIAL%20MV.mp3"
+  },
+  {
+    "id": 43,
+    "title": "Chuyện Đôi Ta",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Chuy%E1%BB%87n%20%C4%90%C3%B4i%20Ta%20-%20Emcee%20L%20(Da%20LAB)%20ft%20Mu%E1%BB%99ii%20(Official%20MV).mp3"
+  },
+  {
+    "id": 44,
+    "title": "Because I Miss You",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Because%20I%20Miss%20You%20(inst)%20(Instrumental)%20(%EA%B7%B8%EB%A6%AC%EC%9B%8C%EC%84%9C...%20(inst)%20(Instrumental)).mp3"
+  },
+  {
+    "id": 45,
+    "title": "Ngày Này Năm Ấy",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BOfficial%20MV%5D%20Ng%C3%A0y%20N%C3%A0y%20N%C4%83m%20%E1%BA%A4y%20-%20Vi%E1%BB%87t%20Anh.mp3"
+  },
+  {
+    "id": 46,
+    "title": "Mơ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/M%C6%A1%20-%20V%C5%A9%20C%C3%A1t%20T%C6%B0%E1%BB%9Dng%20__%20Lyrics%20video.mp3"
+  },
+  {
+    "id": 47,
+    "title": "Cơn Mưa Cuối",
+    "url": "https://qhun22.github.io/D:/songs/lofi/(Lyric%20Video)%20C%C6%A1n%20M%C6%B0a%20Cu%E1%BB%91i%20-%20JustaTee%20x%20Binz.mp3"
+  },
+  {
+    "id": 48,
+    "title": "Vùng An Toàn",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BCHO%20B%E1%BA%A2O%5D%2002.%20V%C3%B9ng%20An%20To%C3%A0n%20-%20B%20Ray%20(ft.%20V%23)%20-%20Prod.%20Hipz.mp3"
+  },
+  {
+    "id": 49,
+    "title": "Crying Over You",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BOfficial%20MV%5D%20Crying%20Over%20You%20-%20JustaTee%20ft.%20Binz.mp3"
+  },
+  {
+    "id": 50,
+    "title": "Xin Anh Đừng",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%5BOfficial%20MV%5D%20Xin%20Anh%20%C4%90%E1%BB%ABng%20-%20Emily%20ft.%20Lil'%20Knight%20%26%20JustaTee.mp3"
+  },
+  {
+    "id": 51,
+    "title": "2AM",
+    "url": "https://qhun22.github.io/D:/songs/lofi/2AM%20-%20JustaTee%20feat%20Big%20Daddy%20Official%20Audio.mp3"
+  },
+  {
+    "id": 52,
+    "title": "Cưới Đi",
+    "url": "https://qhun22.github.io/D:/songs/lofi/2T%20-%20C%C6%AF%E1%BB%9AI%20%C4%90I%20x%20Changg%20(%20Prod.%20So%20Hi%20x%20Flowz%20)%20_%20Audio%20_%20Ch%C6%B0a%20T%E1%BB%ABng%20M%E1%BA%B7c%20V%C3%A1y%20C%C6%B0%E1%BB%9Bi.mp3"
+  },
+  {
+    "id": 53,
+    "title": "Liệu Giờ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/2T%20-%20LI%E1%BB%86U%20GI%E1%BB%9C%20(%20WHAT%20IF%20_%20)%20x%20Venn%20(%20Prod.%20KayT%20)%20_%20M_V.mp3"
+  },
+  {
+    "id": 54,
+    "title": "24h",
+    "url": "https://qhun22.github.io/D:/songs/lofi/24H%20_%20OFFICIAL%20MUSIC%20VIDEO%20_%20LYLY%20ft%20MAGAZINE.mp3"
+  },
+  {
+    "id": 55,
+    "title": "Cảm Ơn Người Đã Thức Cùng Tôi",
+    "url": "https://qhun22.github.io/D:/songs/lofi/A%20LITTLE%20DREAM%20OF%20ME%20-%20Th%E1%BA%A3o%20T%C3%A2m%20ft.%20C%C3%B4ng%20D%C6%B0%C6%A1ng%20_%20OST%20C%E1%BA%A3m%20%C6%A0n%20Ng%C6%B0%E1%BB%9Di%20%C4%90%C3%A3%20Th%E1%BB%A9c%20C%C3%B9ng%20T%C3%B4i%20_%20KC_%2027.02.2026.mp3"
+  },
+  {
+    "id": 56,
+    "title": "Ác Mộng Đẹp",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%C3%81c%20M%E1%BB%99ng%20%C4%90%E1%BA%B9p%20-%20%C4%90%E1%BA%A1t%20G%20_%20Chapter%203_%20%C4%90%E1%BA%B9p%20_%20Album%20_%C3%81c%20M%E1%BB%99ng%20%C4%90%E1%BA%B9p.mp3"
+  },
+  {
+    "id": 57,
+    "title": "Âm Thầm Bên Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%C3%82m%20Th%E1%BA%A7m%20B%C3%AAn%20Em%20_%20S%C6%A1n%20T%C3%B9ng%20M-TP%20_%20AUDIO.mp3"
+  },
+  {
+    "id": 58,
+    "title": "Ex’s Hate Me",
+    "url": "https://qhun22.github.io/D:/songs/lofi/AMEE%20x%20B%20RAY%20-%20Ex%E2%80%99s%20Hate%20Me%20(Part%202)%20_%20Lyric%20Video%20(from%20album%20%E2%80%9CdreAMEE%E2%80%9D).mp3"
+  },
+  {
+    "id": 59,
+    "title": "Anh Chẳng Thể",
+    "url": "https://qhun22.github.io/D:/songs/lofi/ANH%20CH%E1%BA%B2NG%20TH%E1%BB%82%20_%20Ph%E1%BA%A1m%20K%E1%BB%B3%20_%20OFFICIAL%20MV.mp3"
+  },
+  {
+    "id": 60,
+    "title": "Anh Chỉ Muốn",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Anh%20ch%E1%BB%89%20mu%E1%BB%91n%20_%20Ronboogz.mp3"
+  },
+  {
+    "id": 61,
+    "title": "Bánh Mì Không",
+    "url": "https://qhun22.github.io/D:/songs/lofi/B%C3%A1nh%20M%C3%AC%20Kh%C3%B4ng%20-%20%C4%90%E1%BA%A1tG%20x%20DuUy%C3%AAn%20__%20OFFICIAL%20MV.mp3"
+  },
+  {
+    "id": 62,
+    "title": "Bầu Trời Mới",
+    "url": "https://qhun22.github.io/D:/songs/lofi/B%E1%BA%A7u%20Tr%E1%BB%9Di%20M%E1%BB%9Bi%20-%20Da%20LAB%20ft.%20Minh%20T%E1%BB%91c%20%26%20Lam%20(Official%20MV).mp3"
+  },
+  {
+    "id": 63,
+    "title": "Bình Yên",
+    "url": "https://qhun22.github.io/D:/songs/lofi/b%C3%ACnh%20y%C3%AAn%20_%20V%C5%A9.%20ft.%20Binz%20(Official%20MV)%20t%E1%BB%AB%20Album%20_B%E1%BA%A3o%20T%C3%A0ng%20C%E1%BB%A7a%20Nu%E1%BB%91i%20Ti%E1%BA%BFc.mp3"
+  },
+  {
+    "id": 64,
+    "title": "Buồn Thì Cứ Khóc Đi",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Bu%E1%BB%93n%20Th%C3%AC%20C%E1%BB%A9%20Kh%C3%B3c%20%C4%90i%20-%20Lynk%20Lee%20_%20Official%20MV.mp3"
+  },
+  {
+    "id": 65,
+    "title": "Save Me",
+    "url": "https://qhun22.github.io/D:/songs/lofi/DEAMN%20-%20Save%20Me%20(Audio).mp3"
+  },
+  {
+    "id": 66,
+    "title": "Xương Rồng",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Dangrangto%20-%20'x%C6%B0%C6%A1ng%20r%E1%BB%93ng%20(intro)'%20(Prod.%20DONAL).mp3"
+  },
+  {
+    "id": 67,
+    "title": "Chuyện Chúng Ta Sau Này",
+    "url": "https://qhun22.github.io/D:/songs/lofi/chuy%E1%BB%87n%20ch%C3%BAng%20ta%20sau%20n%C3%A0y(Official%20Visualizer%20MV)%20-%20Hai%20Dang%20Doo%20with%20Weeza.mp3"
+  },
+  {
+    "id": 68,
+    "title": "Cho Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Cho%20Em%20-%20MAYDAYs%20(Official%20Visualizer).mp3"
+  },
+  {
+    "id": 69,
+    "title": "Anh Ơi Ở Lại",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Chi%20Pu%20_%20ANH%20%C6%A0I%20%E1%BB%9E%20L%E1%BA%A0I%20-%20Official%20M_V%20(Chuy%E1%BB%87n%20C%C3%A1m%20T%E1%BA%A5m)%20(%EC%B9%98%ED%91%B8).mp3"
+  },
+  {
+    "id": 70,
+    "title": "Chàng Trai Bất Tử",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ch%C3%A0ng%20Trai%20B%E1%BA%A5t%20T%E1%BB%AD%20_%20SiNo%20ft.%20An%20V%C5%A9%20(prod.%20by%20MKM)_%20SiNo%20studio%20MV.mp3"
+  },
+  {
+    "id": 71,
+    "title": "Mất Kết Nối",
+    "url": "https://qhun22.github.io/D:/songs/lofi/D%C6%B0%C6%A1ng%20Domic%20-%20M%E1%BA%A5t%20K%E1%BA%BFt%20N%E1%BB%91i%20_%20EP%20'D%E1%BB%AF%20Li%E1%BB%87u%20Qu%C3%BD'.mp3"
+  },
+  {
+    "id": 72,
+    "title": "Đường Tôi Chở Em Về",
+    "url": "https://qhun22.github.io/D:/songs/lofi/%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4i%20Ch%E1%BB%9F%20Em%20V%E1%BB%81%20_%20buitruonglinh%20_%20Lyrics%20Video.mp3"
+  },
+  {
+    "id": 73,
+    "title": "Em Đừng Khóc",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Em%20%C4%90%E1%BB%ABng%20Kh%C3%B3c%20-%20Chillies%20(Official%20Music%20Video).mp3"
+  },
+  {
+    "id": 74,
+    "title": "Đoạn Kết",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Em%20Ellata%20-%20%C4%90o%E1%BA%A1n%20k%E1%BA%BFt%20(Happy%20Ending).mp3"
+  },
+  {
+    "id": 75,
+    "title": "Ghé Qua",
+    "url": "https://qhun22.github.io/D:/songs/lofi/GH%C3%89%20QUA%20_%20OFFICIAL%20MV%20_%20Dick%20x%20PC%20x%20Tofu.mp3"
+  },
+  {
+    "id": 76,
+    "title": "Dự Báo Thời Tiết Hôm Nay Mưa",
+    "url": "https://qhun22.github.io/D:/songs/lofi/GREY%20D%20-%20d%E1%BB%B1%20b%C3%A1o%20th%E1%BB%9Di%20ti%E1%BA%BFt%20h%C3%B4m%20nay%20m%C6%B0a%20_%20official%20visualizer.mp3"
+  },
+  {
+    "id": 77,
+    "title": "Hello Em Có Khỏe Không",
+    "url": "https://qhun22.github.io/D:/songs/lofi/hello%20em%20c%C3%B3%20kh%E1%BB%8Fe%20kh%C3%B4ng%20%F0%9F%91%BD.mp3%20-%20Dfoxie37%20%26%20Myhoa%20%26%20Tuann.mp3"
+  },
+  {
+    "id": 78,
+    "title": "Hẹn Lần Sau",
+    "url": "https://qhun22.github.io/D:/songs/lofi/H%E1%BA%B9n%20L%E1%BA%A7n%20Sau%20-%20MAYDAYs%20(Official%20Visualizer).mp3"
+  },
+  {
+    "id": 79,
+    "title": "Hẹn Một Mai",
+    "url": "https://qhun22.github.io/D:/songs/lofi/H%E1%BA%B9n%20M%E1%BB%99t%20Mai%20_%20B%C3%B9i%20Anh%20Tu%E1%BA%A5n%20_%20Official%20MV%20_%20(OST%204%20N%C4%83m%202%20Ch%C3%A0ng%201%20T%C3%ACnh%20Y%C3%AAu).mp3"
+  },
+  {
+    "id": 80,
+    "title": "Exit Sign",
+    "url": "https://qhun22.github.io/D:/songs/lofi/HIEUTHUHAI%20-%20Exit%20Sign%20(prod.%20by%20Kewtiie)%20ft.%20marzuz%20%5BOfficial%20Lyric%20Video%5D.mp3"
+  },
+  {
+    "id": 81,
+    "title": "Buông",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Hngle%20-%20Bu%C3%B4ng%20_%20Official%20Music%20Video.mp3"
+  },
+  {
+    "id": 82,
+    "title": "Tìm Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Hngle%20-%20T%C3%ACm%20em%20ft.%20B%E1%BA%A3o%20Anh%20_%20Official%20Music%20Video.mp3"
+  },
+  {
+    "id": 83,
+    "title": "Đoạn Kết Mới",
+    "url": "https://qhun22.github.io/D:/songs/lofi/HO%C3%80NG%20D%C5%A8NG%20-%20%C4%90O%E1%BA%A0N%20K%E1%BA%BET%20M%E1%BB%9AI%20_%20OFFICIAL%20AUDIO.mp3"
+  },
+  {
+    "id": 84,
+    "title": "HongKong1",
+    "url": "https://qhun22.github.io/D:/songs/lofi/HongKong1%20_%20OFFICIAL%20MV%20_%20Nguy%E1%BB%85n%20Tr%E1%BB%8Dng%20T%C3%A0i%20x%20San%20Ji%20x%20Double%20X.mp3"
+  },
+  {
+    "id": 85,
+    "title": "Lời Không Nói",
+    "url": "https://qhun22.github.io/D:/songs/lofi/L%E1%BB%9Di%20Kh%C3%B4ng%20N%C3%B3i%20_%20Ronboogz%20(Lyrics%20video).mp3"
+  },
+  {
+    "id": 86,
+    "title": "Tình Mình Lạ Kỳ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/LIL%20Z%20POET%20-%20T%C3%8CNH%20M%C3%8CNH%20L%E1%BA%A0%20K%C3%8C.mp3"
+  },
+  {
+    "id": 87,
+    "title": "Từ Em Mà Ra",
+    "url": "https://qhun22.github.io/D:/songs/lofi/LiL%20Z%20-%20_T%E1%BB%AA%20EM%20M%C3%80%20RA%20_(%20ft%20%C4%90%E1%BB%A9c%20Anh)%20%5B%20MV%20Official%20%5D.mp3"
+  },
+  {
+    "id": 88,
+    "title": "Kiếm Đâu Bây Giờ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/KI%E1%BA%BEM%20%C4%90%C3%82U%20B%C3%82Y%20GI%E1%BB%9C%20-%20Nguy%E1%BB%85n%20H%C3%B9ng%20(OST%20C%E1%BB%A4C%20V%C3%80NG%20C%E1%BB%A6A%20NGO%E1%BA%A0I)%20_%20OFFICIAL%20MUSIC%20VIDEO.mp3"
+  },
+  {
+    "id": 89,
+    "title": "Không Thời Gian",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Kh%C3%B4ng%20Th%E1%BB%9Di%20Gian%20-%20D%C6%B0%C6%A1ng%20Domic%20(Official%20Visualizer).mp3"
+  },
+  {
+    "id": 90,
+    "title": "She Neva Knows",
+    "url": "https://qhun22.github.io/D:/songs/lofi/JustaTee%20-%20She%20Neva%20Knows%20(%20Original%20).mp3"
+  },
+  {
+    "id": 91,
+    "title": "Đã Lỡ Yêu Em Nhiều",
+    "url": "https://qhun22.github.io/D:/songs/lofi/JustaTee%20-%20%C4%90%C3%A3%20L%E1%BB%A1%20Y%C3%AAu%20Em%20Nhi%E1%BB%81u%20(Official%20MV).mp3"
+  },
+  {
+    "id": 92,
+    "title": "In Love",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Low%20G%20_%20In%20Love%20(ft.%20JustaTee)%20_%20%E2%80%98L2K%E2%80%99%20The%20Album.mp3"
+  },
+  {
+    "id": 93,
+    "title": "Chẳng Phải Tình Đầu Sao Đau Đến Thế",
+    "url": "https://qhun22.github.io/D:/songs/lofi/MIN%20-%20ch%E1%BA%B3ng%20ph%E1%BA%A3i%20t%C3%ACnh%20%C4%91%E1%BA%A7u%20sao%20%C4%91au%20%C4%91%E1%BA%BFn%20th%E1%BA%BF%20feat.%20Dangrangto%2C%20Antransax%20(Official%20Audio).mp3"
+  },
+  {
+    "id": 94,
+    "title": "Miên Man",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Minh%20Huy%20-%20Mi%C3%AAn%20Man%20(OFFICIAL%20MV).mp3"
+  },
+  {
+    "id": 95,
+    "title": "Nắng Có Mang Em Về",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%E1%BA%AFng%20c%C3%B3%20mang%20em%20v%E1%BB%81%20(Orinn%20Lofi%20Ver.)%20-%20Shartnuss%20ft%20Tr.D%20%26%20Phankeo.mp3"
+  },
+  {
+    "id": 96,
+    "title": "Nếu Biết Đó Là Lần Cuối",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%E1%BA%BEU%20BI%E1%BA%BET%20%C4%90%C3%93%20L%C3%80%20L%E1%BA%A6N%20CU%E1%BB%90I%20-%20%C4%90%E1%BB%A8C%20TR%C6%AF%E1%BB%9CNG%20(OFFICIAL%20MUSIC%20VIDEO).mp3"
+  },
+  {
+    "id": 97,
+    "title": "Nghe Kể Năm 90",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Nghe%20k%E1%BB%83%20n%C4%83m%2090s%20_%20%C3%82n%20ng%E1%BB%9D%20ft.%20Suzie%20MK%20%5B%20EP_%20N%C3%A0y%20Hay%20%5D.mp3"
+  },
+  {
+    "id": 98,
+    "title": "Nơi Này Có Anh",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%C6%A0I%20N%C3%80Y%20C%C3%93%20ANH%20_%20OFFICIAL%20MUSIC%20VIDEO%20_%20S%C6%A0N%20T%C3%99NG%20M-TP.mp3"
+  },
+  {
+    "id": 99,
+    "title": "Nói Dối",
+    "url": "https://qhun22.github.io/D:/songs/lofi/N%C3%B3i%20D%E1%BB%91i%20_%20Ronboogz%20(Lyrics%20Video).mp3"
+  },
+  {
+    "id": 100,
+    "title": "Những Lời Hứa Bỏ Quên",
+    "url": "https://qhun22.github.io/D:/songs/lofi/NH%E1%BB%AENG%20L%E1%BB%9CI%20H%E1%BB%A8A%20B%E1%BB%8E%20QU%C3%8AN%20_%20V%C5%A8.%20x%20DEAR%20JANE%20(Official%20MV)%20t%E1%BB%AB%20Album%20_B%E1%BA%A3o%20T%C3%A0ng%20C%E1%BB%A7a%20Nu%E1%BB%91i%20Ti%E1%BA%BFc.mp3"
+  },
+  {
+    "id": 101,
+    "title": "Nhắn nhủ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Nh%E1%BA%AFn%20nh%E1%BB%A7%20_%20Ronboogz%20(Lyrics%20video).mp3"
+  },
+  {
+    "id": 102,
+    "title": "Người Đầu Tiên",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ng%C6%B0%E1%BB%9Di%20%C4%90%E1%BA%A7u%20Ti%C3%AAn%20-%20Juky%20San%20feat.%20buitruonglinh.mp3"
+  },
+  {
+    "id": 103,
+    "title": "Người Đáng Thương Là Anh",
+    "url": "https://qhun22.github.io/D:/songs/lofi/NG%C6%AF%E1%BB%9CI%20%C4%90%C3%81NG%20TH%C6%AF%C6%A0NG%20L%C3%80%20ANH%20-%20ONLY%20C%20X%20NGUY%E1%BB%84N%20PH%C3%9AC%20THI%E1%BB%86N%20_%20OFFICIAL%20MUSIC%20VIDEO.mp3"
+  },
+  {
+    "id": 104,
+    "title": "Ngồi Nghe Em Khóc",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ng%E1%BB%93i%20Nghe%20Em%20Kh%C3%B3c%20-%20%C4%90%E1%BA%A1t%20G%20_%20Chapter%201_%20%C3%81c%20_%20Album%20_%C3%81c%20M%E1%BB%99ng%20%C4%90%E1%BA%B9p.mp3"
+  },
+  {
+    "id": 105,
+    "title": "10 Ngàn Năm",
+    "url": "https://qhun22.github.io/D:/songs/lofi/PC%20-%2010%20Ng%C3%A0n%20N%C4%83m%20(%20Prod.%20Duckie%20)%20%5BOfficial%20Audio%5D.mp3"
+  },
+  {
+    "id": 106,
+    "title": "Phép Màu",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ph%C3%A9p%20M%C3%A0u%20(%C4%90%C3%A0n%20C%C3%A1%20G%E1%BB%97%20OST)%20-%20Mounter%20x%20MAYDAYs%2C%20Minh%20T%E1%BB%91c%20_%20Official%20MV.mp3"
+  },
+  {
+    "id": 107,
+    "title": "Hôm Nay Tôi Buồn",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Ph%C3%B9ng%20Kh%C3%A1nh%20Linh%20-%20H%C3%B4m%20Nay%20T%C3%B4i%20Bu%E1%BB%93n%20(Official%20Music%20Video).mp3"
+  },
+  {
+    "id": 108,
+    "title": "Bông Hoa Đẹp Nhất",
+    "url": "https://qhun22.github.io/D:/songs/lofi/QU%C3%82N%20A.P%20_%20B%C3%94NG%20HOA%20%C4%90%E1%BA%B8P%20NH%E1%BA%A4T%20_%20OFFICIAL%20MUSIC%20VIDEO.mp3"
+  },
+  {
+    "id": 109,
+    "title": "Anh Đã Không Biết Cách Yêu Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/QUANG%20%C4%90%C4%82NG%20TR%E1%BA%A6N%20-%20ANH%20%C4%90%C3%83%20KH%C3%94NG%20BI%E1%BA%BET%20C%C3%81CH%20Y%C3%8AU%20EM%20_%20OFFICIAL%20_%20Nh%E1%BB%AFng%20g%C3%AC%20%C4%91%C3%A3%20qua%20li%E1%BB%87u%20r%E1%BA%B1ng%20c%C3%B3%20%C3%BD%20ngh%C4%A9a%20g%C3%AC.mp3"
+  },
+  {
+    "id": 110,
+    "title": "Quên Đặt Tên",
+    "url": "https://qhun22.github.io/D:/songs/lofi/QU%C3%8AN%20%C4%90%E1%BA%B6T%20T%C3%8AN%20_%20Ph%E1%BA%A1m%20Nguy%C3%AAn%20Ng%E1%BB%8Dc%20(OFFICIAL%20MV).mp3"
+  },
+  {
+    "id": 111,
+    "title": "Nến Và Hoa",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Rhymastic%20-%20N%E1%BA%BFn%20V%C3%A0%20Hoa%20(Official%20Audio).mp3"
+  },
+  {
+    "id": 112,
+    "title": "Tình Yêu Chậm Trễ",
+    "url": "https://qhun22.github.io/D:/songs/lofi/t%C3%ACnh%20y%C3%AAu%20ch%E1%BA%ADm%20tr%E1%BB%85.mp3"
+  },
+  {
+    "id": 113,
+    "title": "Thức Giấc",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Th%E1%BB%A9c%20Gi%E1%BA%A5c%20-%20Da%20LAB%20(Official%20Music%20Video).mp3"
+  },
+  {
+    "id": 114,
+    "title": "Thời Gian Sẽ Trả Lời",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Th%E1%BB%9Di%20Gian%20S%E1%BA%BD%20Tr%E1%BA%A3%20L%E1%BB%9Di%20(Official%20MV)%20-%20Ti%C3%AAn%20Cookie%20feat.%20JustaTee%20%26%20BigDaddy.mp3"
+  },
+  {
+    "id": 115,
+    "title": "Thêm Bao Nhiêu Lâu",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Th%C3%AAm%20Bao%20Nhi%C3%AAu%20L%C3%A2u%20-%20%C4%90%E1%BA%A1t%20G%20__%20OFFICIAL%20MV.mp3"
+  },
+  {
+    "id": 116,
+    "title": "Sinh Ra Đã Là Thứ Đối Lập Nhau",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Sinh%20Ra%20%C4%90%C3%A3%20L%C3%A0%20Th%E1%BB%A9%20%C4%90%E1%BB%91i%20L%E1%BA%ADp%20Nhau%20-%20Emcee%20L%20(Da%20LAB)%20ft.%20Badbies%20(Official%20MV).mp3"
+  },
+  {
+    "id": 117,
+    "title": "Lặng",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Shiki%20-%20Perfect%20(ft.%20Tyronee)%20%5B'L%E1%BA%B7ng'%20EP%5D.mp3"
+  },
+  {
+    "id": 118,
+    "title": "Sài Gòn Hôm Nay Mưa",
+    "url": "https://qhun22.github.io/D:/songs/lofi/S%C3%80I%20G%C3%92N%20H%C3%94M%20NAY%20M%C6%AFA%20-%20JSOL%20x%20HO%C3%80NG%20DUY%C3%8AN%20_%20Official%20MV.mp3"
+  },
+  {
+    "id": 119,
+    "title": "Trời Giấu Trời Mang Đi",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Tr%E1%BB%9Di%20Gi%E1%BA%A5u%20Tr%E1%BB%9Di%20Mang%20%C4%90i.mp3"
+  },
+  {
+    "id": 120,
+    "title": "Trước Khi Em Tồn Tại",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Tr%C6%B0%E1%BB%9Bc%20Khi%20Em%20T%E1%BB%93n%20T%E1%BA%A1i%20(Piano%20Version)%20-%20Th%E1%BA%AFng%20_%20Vi%E1%BB%87t%20Anh%20Cover%20(MV%20Lyric).mp3"
+  },
+  {
+    "id": 121,
+    "title": "Từng Ngày Yêu Em",
+    "url": "https://qhun22.github.io/D:/songs/lofi/T%E1%BB%ABng%20Ng%C3%A0y%20Y%C3%AAu%20Em%20_%20buitruonglinh.mp3"
+  },
+  {
+    "id": 122,
+    "title": "Túy Âm",
+    "url": "https://qhun22.github.io/D:/songs/lofi/T%C3%BAy%20%C3%82m%20-%20Xesi%20x%20Masew%20x%20Nhatnguyen.mp3"
+  },
+  {
+    "id": 123,
+    "title": "Và Thế Giới Đã Mất Đi Một Người Cô Đơn",
+    "url": "https://qhun22.github.io/D:/songs/lofi/V%C3%A0%20Th%E1%BA%BF%20Gi%E1%BB%9Bi%20%C4%90%C3%A3%20M%E1%BA%A5t%20%C4%90i%20M%E1%BB%99t%20Ng%C6%B0%E1%BB%9Di%20C%C3%B4%20%C4%90%C6%A1n.mp3"
+  },
+  {
+    "id": 124,
+    "title": "Vì Anh Đâu Có Biết",
+    "url": "https://qhun22.github.io/D:/songs/lofi/V%C3%AC%20Anh%20%C4%90%C3%A2u%20C%C3%B3%20Bi%E1%BA%BFt%20-%20Madihu%20(Feat.%20V%C5%A9.)%20_%20Official%20MV.mp3"
+  },
+  {
+    "id": 125,
+    "title": "Vết Mưa",
+    "url": "https://qhun22.github.io/D:/songs/lofi/V%C5%A8%20C%C3%81T%20T%C6%AF%E1%BB%9CNG%20-%20V%E1%BA%BET%20M%C6%AFA%20_%20OFFICIAL.mp3"
+  },
+  {
+    "id": 126,
+    "title": "Vườn Hoa Con Cá",
+    "url": "https://qhun22.github.io/D:/songs/lofi/V%C6%B0%E1%BB%9Dn%20Hoa%20Con%20C%C3%A1%20-%20O.lew%20x%20Ng%E1%BA%AFn%20%5BLyrics%20Video%5D%20M%C6%B0a.mp3"
+  },
+  {
+    "id": 127,
+    "title": "Xin Đừng Lặng Im",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Xin%20%C4%90%E1%BB%ABng%20L%E1%BA%B7ng%20Im.mp3"
+  },
+  {
+    "id": 128,
+    "title": "Yêu 5",
+    "url": "https://qhun22.github.io/D:/songs/lofi/Y%C3%AAu%205%20-%20Rhymastic%20_%20Nh%E1%BA%A1c%20Hot%20TikTok%20_%20Lyrics%20Video.mp3"
   }
 ]

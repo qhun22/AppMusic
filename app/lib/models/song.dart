@@ -52,4 +52,28 @@ class Song {
       if (artUrl != null) 'artUrl': artUrl,
     };
   }
+
+  /// Đoán ca sĩ từ tiêu đề dạng "Tên bài - Ca sĩ" (dùng cho xáo trộn thông minh)
+  String get artistGuess {
+    final parts = title.split(RegExp(r'\s+-\s+'));
+    if (parts.length > 1) {
+      final last = parts.last.trim();
+      if (last.isNotEmpty) return last;
+    }
+    return title;
+  }
+
+  /// Khoá so sánh ca sĩ (chữ thường, bỏ khoảng trắng thừa)
+  String get artistKey => artistGuess.toLowerCase().replaceAll(RegExp(r'\s+'), ' ').trim();
+
+  /// Bỏ đuôi tên file kiểu "(Official Lyric Video)" cho gọn (nếu có)
+  String get shortTitle {
+    var t = title;
+    t = t.replaceAll(RegExp(r'\s*[\(\[]\s*official[^\)\]]*[\)\]]', caseSensitive: false), '');
+    t = t.replaceAll(RegExp(r'\s+'), ' ').trim();
+    return t.isEmpty ? title : t;
+  }
+
+  @override
+  String toString() => '#$id $title';
 }

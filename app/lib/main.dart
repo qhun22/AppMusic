@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:just_audio_background/just_audio_background.dart';
 import 'models/song.dart';
 import 'services/audio_manager.dart';
+import 'widgets/player_sheets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -105,6 +106,58 @@ class _HomeScreenState extends State<HomeScreen>
       _fetchSongs('remix'),
       _fetchSongs('lofi'),
     ]);
+    await _restoreLastSession();
+  }
+
+  /// Mở app: khôi phục đúng bài + giây đang nghe dở của lần trước
+  Future<void> _restoreLastSession() async {
+    try {
+      final restored = await _audioManager.restoreSession();
+      if (!mounted || !restored) return;
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: const Color(0xFF0284C7),
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            _audioManager.statusNotifier.value.isEmpty
+                ? 'Đã khôi phục phiên nghe trước'
+                : _audioManager.statusNotifier.value,
+          ),
+        ),
+      );
+    } catch (e) {
+      debugPrint('restoreSession lỗi: $e');
+    }
+  }
+
+  /// Nút tròn nhỏ trên AppBar (kiểu iOS)
+  Widget _roundIconButton({
+    required IconData icon,
+    required String tooltip,
+    required VoidCallback onPressed,
+    bool active = false,
+  }) {
+    return IconButton(
+      icon: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: active ? const Color(0xFF0284C7) : Colors.white,
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: active ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+          ),
+        ),
+        child: Icon(
+          icon,
+          size: 18,
+          color: active ? Colors.white : const Color(0xFF475569),
+        ),
+      ),
+      tooltip: tooltip,
+      onPressed: onPressed,
+    );
   }
 
   Future<void> _fetchSongs(String type) async {
@@ -272,6 +325,31 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         actions: [
+          ValueListenableBuilder<bool>(
+            valueListenable: _audioManager.shuffleNotifier,
+            builder: (context, on, _) => _roundIconButton(
+              icon: Icons.shuffle_rounded,
+              tooltip: on ? 'Đang bật xáo trộn' : 'Bật xáo trộn',
+              active: on,
+              onPressed: () => _audioManager.setShuffle(!on),
+            ),
+          ),
+          ValueListenableBuilder<RepeatModeApp>(
+            valueListenable: _audioManager.repeatNotifier,
+            builder: (context, mode, _) => _roundIconButton(
+              icon: mode == RepeatModeApp.one
+                  ? Icons.repeat_one_rounded
+                  : Icons.repeat_rounded,
+              tooltip: 'Chế độ lặp: ${_audioManager.repeatLabel}',
+              active: mode != RepeatModeApp.off,
+              onPressed: () => _audioManager.cycleRepeat(),
+            ),
+          ),
+          _roundIconButton(
+            icon: Icons.tune_rounded,
+            tooltip: 'Điều khiển nhanh (A-B, tốc độ, hẹn giờ, hàng đợi…)',
+            onPressed: () => showQuickControlsSheet(context, _audioManager),
+          ),
           IconButton(
             icon: Container(
               width: 36,
@@ -491,6 +569,12 @@ class _HomeScreenState extends State<HomeScreen>
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   onTap: () => _audioManager.playSong(song, songs),
+                  onLongPress: () => showSongActionsSheet(
+                    context,
+                    _audioManager,
+                    song,
+                    songs,
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                     child: Row(
@@ -1083,9 +1167,122 @@ class FullPlayerSheet extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 14),
+
+              // ===== Điều khiển nâng cao: lặp lại / xáo trộn / A-B / tua / hàng đợi / hẹn giờ =====
+              AnimatedBuilder(
+                animation: Listenable.merge(<Listenable>[
+                  audioManager.shuffleNotifier,
+                  audioManager.repeatNotifier,
+                  audioManager.abNotifier,
+                  audioManager.timerNotifier,
+                  audioManager.currentPlaylistNotifier,
+                ]),
+                builder: (context, _) {
+                  return Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _controlChip(
+                        'Xáo trộn',
+                        Icons.shuffle_rounded,
+                        audioManager.isShuffleOn,
+                        () => audioManager.setShuffle(!audioManager.isShuffleOn),
+                      ),
+                      _controlChip(
+                        'Lặp: ${audioManager.repeatLabel}',
+                        Icons.repeat_rounded,
+                        audioManager.repeatMode != RepeatModeApp.off,
+                        () => audioManager.cycleRepeat(),
+                      ),
+                      _controlChip(
+                        'Lặp A-B',
+                        Icons.repeat_on_rounded,
+                        audioManager.hasAbRepeat,
+                        () => audioManager.cycleAbRepeat(),
+                      ),
+                      _controlChip(
+                        'Tua ±${audioManager.settings.seekStep}s',
+                        Icons.fast_forward_rounded,
+                        false,
+                        () => audioManager.skipSeconds(audioManager.settings.seekStep),
+                      ),
+                      _controlChip(
+                        'Hàng đợi (${audioManager.queue.length})',
+                        Icons.queue_music_rounded,
+                        false,
+                        () => showQueueSheet(context, audioManager),
+                      ),
+                      _controlChip(
+                        'Hẹn giờ: ${audioManager.timerNotifier.value}',
+                        Icons.timer_outlined,
+                        audioManager.hasSleepTimer,
+                        () => showSleepTimerSheet(context, audioManager),
+                      ),
+                      _controlChip(
+                        'Tốc độ ${audioManager.settings.speed.toStringAsFixed(2)}x',
+                        Icons.speed_rounded,
+                        false,
+                        () => showSpeedPitchSheet(context, audioManager),
+                      ),
+                      _controlChip(
+                        'DSP',
+                        Icons.graphic_eq_rounded,
+                        false,
+                        () => showDspSheet(context, audioManager),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ],
           );
         },
+      ),
+    );
+  }
+
+  /// Chip điều khiển phụ trong màn hình phát nhạc
+  Widget _controlChip(
+    String label,
+    IconData icon,
+    bool active,
+    VoidCallback onTap,
+  ) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: active ? const Color(0xFF0284C7) : const Color(0xFFF8FAFC),
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: active ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 15,
+                color: active ? Colors.white : const Color(0xFF64748B),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: active ? Colors.white : const Color(0xFF64748B),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

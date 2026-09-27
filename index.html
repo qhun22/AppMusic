@@ -2,1477 +2,437 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>qhun22Music - Kho Nhạc Cá Nhân & Quản Trị Tĩnh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="qhun22Music - Trình phát nhạc cá nhân chạy tĩnh trên GitHub Pages">
+  <title>qhun22Music · Trình phát nhạc &amp; Quản trị</title>
   <link rel="icon" type="image/jpeg" href="var.jpg">
+  <link rel="apple-touch-icon" href="var.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0a0c10;
-      --bg-secondary: #12161f;
-      --bg-card: rgba(22, 27, 39, 0.7);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(99, 102, 241, 0.4);
-      --accent-primary: #6366f1;
-      --accent-secondary: #a855f7;
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --success: #10b981;
-      --danger: #ef4444;
-      --radius-lg: 16px;
-      --radius-md: 10px;
-      --radius-sm: 6px;
-      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
-      background-attachment: fixed;
-    }
-
-    header {
-      border-bottom: 1px solid var(--border-color);
-      backdrop-filter: blur(20px);
-      background: rgba(10, 12, 16, 0.75);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 16px 32px;
-    }
-
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: var(--radius-md);
-      background: var(--accent-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
-    }
-
-    .brand-icon svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-    }
-
-    .brand h1 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .brand span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: block;
-    }
-
-    .repo-config {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 6px 12px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .repo-config label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .repo-config input {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-main);
-      padding: 6px 10px;
-      font-size: 0.85rem;
-      outline: none;
-      transition: var(--transition);
-      width: 130px;
-    }
-
-    .repo-config input:focus {
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-    }
-
-    .container {
-      max-width: 1400px;
-      width: 100%;
-      margin: 28px auto;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: 460px 1fr;
-      gap: 28px;
-      flex: 1;
-    }
-
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-      }
-      header {
-        padding: 16px 20px;
-      }
-    }
-
-    .card {
-      background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      margin-bottom: 24px;
-    }
-
-    .card:last-child {
-      margin-bottom: 0;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-main);
-    }
-
-    .card-title svg {
-      width: 20px;
-      height: 20px;
-      color: var(--accent-primary);
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      background: rgba(10, 12, 16, 0.7);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      color: var(--text-main);
-      padding: 10px 14px;
-      font-size: 0.9rem;
-      outline: none;
-      transition: var(--transition);
-      font-family: inherit;
-    }
-
-    .form-control:focus {
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-
-    .file-dropzone {
-      border: 2px dashed rgba(99, 102, 241, 0.4);
-      background: rgba(99, 102, 241, 0.04);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .file-dropzone:hover {
-      border-color: var(--accent-primary);
-      background: rgba(99, 102, 241, 0.08);
-    }
-
-    .file-dropzone input[type="file"] {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    .file-dropzone svg {
-      width: 32px;
-      height: 32px;
-      color: var(--accent-primary);
-      margin-bottom: 8px;
-    }
-
-    .file-dropzone p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .file-dropzone p strong {
-      color: var(--text-main);
-    }
-
-    .url-preview {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      font-size: 0.75rem;
-      font-family: monospace;
-      color: #38bdf8;
-      word-break: break-all;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      margin-top: 8px;
-    }
-
-    /* ===== Gợi ý tên bài hát (chống trùng) ===== */
-    .autocomplete {
-      position: relative;
-    }
-
-    .suggest-list {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      z-index: 60;
-      background: rgba(18, 22, 31, 0.98);
-      border: 1px solid var(--border-hover);
-      border-radius: var(--radius-md);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(16px);
-      max-height: 260px;
-      overflow-y: auto;
-      display: none;
-    }
-
-    .suggest-list.open {
-      display: block;
-    }
-
-    .suggest-head {
-      position: sticky;
-      top: 0;
-      padding: 8px 12px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      background: rgba(18, 22, 31, 0.98);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .suggest-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 9px 12px;
-      font-size: 0.86rem;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      transition: background 0.15s ease;
-    }
-
-    .suggest-item:last-child {
-      border-bottom: none;
-    }
-
-    .suggest-item:hover,
-    .suggest-item.active {
-      background: rgba(99, 102, 241, 0.16);
-    }
-
-    .suggest-title {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: var(--text-main);
-    }
-
-    .suggest-title mark {
-      background: rgba(168, 85, 247, 0.4);
-      color: #fff;
-      border-radius: 3px;
-      padding: 0 2px;
-    }
-
-    .suggest-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .suggest-badge {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
-    }
-
-    .suggest-badge.genre-remix {
-      background: rgba(99, 102, 241, 0.22);
-      color: #c7d2fe;
-    }
-
-    .suggest-badge.genre-lofi {
-      background: rgba(16, 185, 129, 0.2);
-      color: #a7f3d0;
-    }
-
-    .dupe-alert {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 8px 12px;
-      font-size: 0.78rem;
-      line-height: 1.45;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      background: rgba(239, 68, 68, 0.12);
-      color: #fecaca;
-    }
-
-    .dupe-alert.show {
-      display: flex;
-    }
-
-    .dupe-alert.ok {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: rgba(16, 185, 129, 0.08);
-      color: #a7f3d0;
-    }
-
-    .import-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 18px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      border: none;
-      transition: var(--transition);
-      text-decoration: none;
-      width: 100%;
-    }
-
-    .btn-primary {
-      background: var(--accent-gradient);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-primary:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-group-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    /* Right Column Styling */
-    .tabs-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 4px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 8px 18px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tab-btn.active {
-      background: var(--accent-primary);
-      color: #fff;
-      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.35);
-    }
-
-    .tab-badge {
-      background: rgba(255, 255, 255, 0.2);
-      font-size: 0.72rem;
-      padding: 2px 6px;
-      border-radius: 999px;
-    }
-
-    .tab-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 0.78rem;
-      width: auto;
-      border-radius: var(--radius-sm);
-    }
-
-    .song-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 700px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .song-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .song-list::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 999px;
-    }
-
-    .song-card {
-      background: rgba(18, 22, 31, 0.7);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 16px;
-      transition: var(--transition);
-    }
-
-    .song-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .song-id {
-      font-family: monospace;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      font-weight: 700;
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .song-info {
-      overflow: hidden;
-    }
-
-    .song-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 6px;
-    }
-
-    .song-url {
-      font-size: 0.74rem;
-      color: var(--text-dim);
-      font-family: monospace;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-    }
-
-    .song-url:hover {
-      color: var(--accent-primary);
-      text-decoration: underline;
-    }
-
-    .song-player-container {
-      margin-top: 8px;
-    }
-
-    audio {
-      width: 100%;
-      height: 32px;
-      outline: none;
-      filter: invert(0.9) hue-rotate(180deg);
-      border-radius: 20px;
-    }
-
-    .song-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-
-    .btn-icon:hover {
-      background: rgba(239, 68, 68, 0.15);
-      color: var(--danger);
-      border-color: rgba(239, 68, 68, 0.3);
-    }
-
-    .btn-icon-copy:hover {
-      background: rgba(99, 102, 241, 0.15);
-      color: var(--accent-primary);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-dim);
-    }
-
-    .empty-state svg {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 12px;
-      color: var(--text-dim);
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1e293b;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 999;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .toast.success {
-      border-left: 4px solid var(--success);
-    }
-
-    .toast.error {
-      border-left: 4px solid var(--danger);
-    }
-
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 20px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-top: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body>
 
-  <header>
+  <header class="app-header">
     <div class="header-inner">
       <div class="brand">
-        <div class="brand-icon" style="overflow: hidden; padding: 0;">
-          <img src="var.jpg" alt="qhun22Music" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
-        </div>
-        <div>
-          <h1>qhun22Music Admin</h1>
-          <span>GitHub Pages Static Music Manager</span>
+        <img class="brand-logo" src="var.jpg" alt="qhun22Music">
+        <div class="brand-text">
+          <h1>qhun22Music</h1>
+          <span>Trắng – xanh basic · chạy tĩnh trên GitHub Pages</span>
         </div>
       </div>
 
+      <nav class="view-tabs" id="viewTabs">
+        <button type="button" class="view-tab active" data-view="player">Trình phát</button>
+        <button type="button" class="view-tab" data-view="library">Thư viện</button>
+        <button type="button" class="view-tab" data-view="admin">Quản trị</button>
+      </nav>
+
       <div class="repo-config">
-        <label>GitHub:</label>
-        <input type="text" id="cfgUsername" placeholder="qhun22" title="GitHub Username">
-        <span style="color: var(--text-dim)">/</span>
-        <input type="text" id="cfgRepo" placeholder="AppMusic" title="Repository Name">
+        <label class="mini-field">User
+          <input type="text" id="cfgUsername" spellcheck="false" autocomplete="off">
+        </label>
+        <label class="mini-field">Repo
+          <input type="text" id="cfgRepo" spellcheck="false" autocomplete="off">
+        </label>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnReloadRepo" title="Tải lại remix.json &amp; lofi.json từ GitHub Pages">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Tải lại
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-open="settings" title="Cài đặt hành vi phát nhạc">Cài đặt</button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- CỘT TRÁI: FORM THÊM & XUẤT JSON -->
-    <section>
-      <!-- Form thêm bài -->
+  <main>
+    <!-- ============ VIEW 1: TRÌNH PHÁT ============ -->
+    <section class="view active" id="view-player">
+      <div class="player-layout">
+
+        <div class="card player-main">
+          <div class="cover-zone" id="coverArea">
+            <img class="cover" id="coverImg" src="var.jpg" alt="Ảnh bìa">
+            <div class="gesture-flash left" id="flashLeft">&laquo; 10s</div>
+            <div class="gesture-flash right" id="flashRight">10s &raquo;</div>
+            <span class="gesture-hint">Vuốt ← → đổi bài · Chạm 2 lần trái/phải để tua ±10s · Lắc máy để đổi bài</span>
+          </div>
+
+          <div class="track-meta">
+            <div class="track-title" id="nowTitle">Chưa chọn bài hát</div>
+            <div class="track-sub">
+              <span class="pill" id="nowGenre">—</span>
+              <span class="dot">•</span>
+              <span id="nowIndex">0 / 0</span>
+              <span class="dot">•</span>
+              <span id="nowStatus">Sẵn sàng</span>
+            </div>
+          </div>
+
+          <div class="progress-row">
+            <span class="time" id="timeElapsed">0:00</span>
+            <input type="range" id="seekBar" class="seek" min="0" max="1000" step="1" value="0" aria-label="Tiến trình bài hát">
+            <span class="time" id="timeRemaining">-0:00</span>
+          </div>
+
+          <div class="controls-main">
+            <button type="button" class="ctl" id="btnShuffle" title="Xáo trộn (S)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+            </button>
+            <button type="button" class="ctl" id="btnPrev" title="Bài trước (đã phát &gt; 3s sẽ về đầu bài hiện tại)">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14l-11-7z"/></svg>
+            </button>
+            <button type="button" class="ctl" id="btnBack" title="Tua lùi (←)">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+              <span class="ctl-tag" id="tagBack">10s</span>
+            </button>
+            <button type="button" class="ctl ctl-play" id="btnPlay" title="Phát / Tạm dừng (Space)">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" id="iconPlay"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" class="ctl" id="btnFwd" title="Tua tới (→)">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+              <span class="ctl-tag" id="tagFwd">10s</span>
+            </button>
+            <button type="button" class="ctl" id="btnNext" title="Bài sau">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" class="ctl" id="btnRepeat" title="Chế độ lặp lại (R)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" id="iconRepeat"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              <span class="ctl-tag" id="repeatTag">Tắt</span>
+            </button>
+          </div>
+
+          <div class="controls-sub">
+            <button type="button" class="chip" id="btnAB" title="Lặp đoạn A-B">A-B</button>
+            <button type="button" class="chip" data-open="speed">Tốc độ <b id="speedTag">1.0x</b></button>
+            <button type="button" class="chip" data-open="speed">Cao độ <b id="pitchTag">0</b></button>
+            <button type="button" class="chip" data-open="eq">EQ &amp; DSP</button>
+            <button type="button" class="chip" data-open="queue">Hàng đợi <b id="queueTag">0</b></button>
+            <button type="button" class="chip" data-open="timer">Hẹn giờ <b id="timerTag">Tắt</b></button>
+            <button type="button" class="chip" id="btnMute" title="Tắt tiếng (M)">Mute</button>
+            <span class="volume-wrap">
+              <input type="range" id="volBar" class="vol" min="0" max="100" value="100" aria-label="Âm lượng">
+              <span class="vol-val" id="volVal">100</span>
+            </span>
+          </div>
+
+          <div class="ab-info" id="abInfo"></div>
+        </div>
+
+        <aside class="card side-card">
+          <div class="side-head">
+            <h2>Phát tiếp theo</h2>
+            <button type="button" class="btn btn-ghost btn-sm" data-open="queue">Mở hàng đợi</button>
+          </div>
+          <div class="upnext" id="upNextList"></div>
+          <div class="side-stats">
+            <div class="stat"><span>Thể loại</span><b id="statGenre">—</b></div>
+            <div class="stat"><span>Tổng bài</span><b id="statTotal">0</b></div>
+            <div class="stat"><span>Đã phát</span><b id="statPlayed">0</b></div>
+            <div class="stat"><span>Hẹn giờ</span><b id="statTimer">Tắt</b></div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ============ VIEW 2: THƯ VIỆN ============ -->
+    <section class="view" id="view-library">
       <div class="card">
-        <div class="card-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          Thêm Bài Hát Mới
+        <div class="lib-toolbar">
+          <div class="seg" id="genreTabs">
+            <button type="button" class="seg-btn active" id="tabRemix" data-tab="remix">Remix <span class="badge" id="badgeRemix">0</span></button>
+            <button type="button" class="seg-btn" id="tabLofi" data-tab="lofi">Lofi <span class="badge" id="badgeLofi">0</span></button>
+          </div>
+          <input type="search" id="searchSongs" class="form-control search" placeholder="Tìm bài hát (không dấu cũng được)…">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnPlayAll">Phát tất cả</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnShufflePlay">Phát ngẫu nhiên</button>
         </div>
+        <div class="song-list" id="songListContainer"></div>
+        <p class="hint-line">
+          Mỗi bài có: <b>Phát ngay</b>, <b>Phát tiếp theo</b>, <b>Thêm vào cuối hàng đợi</b>, <b>Copy link</b>, <b>Xoá khỏi danh sách</b> (đồng bộ vào JSON ở tab Quản trị).
+        </p>
+      </div>
+    </section>
 
-        <div class="form-group">
-          <label>1. Chọn file MP3</label>
-          <div class="file-dropzone" id="dropzone">
+    <!-- ============ VIEW 3: QUẢN TRỊ ============ -->
+    <section class="view" id="view-admin">
+      <div class="admin-layout">
+        <div class="card">
+          <div class="card-title">Thêm bài hát mới</div>
+          <div class="form-group">
+            <label for="fileInput">1. Chọn file MP3</label>
             <input type="file" id="fileInput" accept=".mp3,audio/mpeg">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-            <p><strong id="fileNotice">Kéo thả file MP3 vào đây</strong> hoặc bấm để duyệt</p>
+            <p class="file-notice" id="fileNotice">Chưa chọn file nào</p>
+          </div>
+          <div class="form-group">
+            <label for="songTitle">2. Tên bài hát</label>
+            <div class="autocomplete">
+              <input type="text" id="songTitle" class="form-control" placeholder="VD: Vết Thương Trong Lòng" autocomplete="off">
+              <div class="suggest-list" id="titleSuggestions"></div>
+            </div>
+            <div class="dupe-alert" id="dupeAlert"></div>
+          </div>
+          <div class="form-group">
+            <label for="songFilename">3. Tên file trên repo</label>
+            <input type="text" id="songFilename" class="form-control" placeholder="VD: VET THUONG TRONG LONG.mp3" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="songGenre">4. Thể loại</label>
+            <select id="songGenre" class="form-control">
+              <option value="remix">Remix</option>
+              <option value="lofi">Lofi</option>
+            </select>
+          </div>
+          <div class="url-preview" id="urlPreview">https://username.github.io/repo/songs/remix/...</div>
+          <button type="button" class="btn btn-primary" id="btnAddSong">Thêm vào danh sách tạm thời</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Import / Export JSON</div>
+          <p class="muted">
+            Tải file JSON về máy sau khi thêm/xoá bài rồi commit đè lên <code>remix.json</code> hoặc <code>lofi.json</code> trong kho GitHub.
+          </p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" id="btnDownloadRemix">Tải remix.json</button>
+            <button type="button" class="btn btn-secondary" id="btnDownloadLofi">Tải lofi.json</button>
+          </div>
+          <div class="divider"></div>
+          <label class="muted" for="importJsonInput">Import JSON có sẵn (chọn được cả 2 file cùng lúc):</label>
+          <div class="import-options">
+            <select id="importGenre" class="form-control" title="Thể loại của file JSON được import">
+              <option value="auto">Tự nhận diện</option>
+              <option value="remix">Remix</option>
+              <option value="lofi">Lofi</option>
+            </select>
+            <select id="importMode" class="form-control" title="Cách ghi vào danh sách hiện tại">
+              <option value="replace">Ghi đè</option>
+              <option value="append">Thêm vào</option>
+            </select>
+          </div>
+          <input type="file" id="importJsonInput" accept=".json,application/json" multiple>
+          <p class="hint-line">Link dạng <code>.../D:/songs/lofi/...</code> sẽ tự được chuẩn hoá theo GitHub User/Repo ở trên.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- ============ BOTTOM SHEET (Hàng đợi / EQ / Hẹn giờ / Tốc độ / Cài đặt) ============ -->
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <aside class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet-head">
+      <div class="sheet-tabs" id="sheetTabs">
+        <button type="button" class="sheet-tab" data-sheet="queue">Hàng đợi</button>
+        <button type="button" class="sheet-tab" data-sheet="speed">Tốc độ &amp; Cao độ</button>
+        <button type="button" class="sheet-tab" data-sheet="eq">EQ &amp; DSP</button>
+        <button type="button" class="sheet-tab" data-sheet="timer">Hẹn giờ</button>
+        <button type="button" class="sheet-tab" data-sheet="settings">Cài đặt</button>
+      </div>
+      <button type="button" class="icon-btn" id="sheetClose" title="Đóng">✕</button>
+    </div>
+
+    <div class="sheet-body">
+      <!-- QUEUE -->
+      <div class="sheet-panel" data-panel="queue">
+        <div class="panel-toolbar">
+          <span class="muted">Đang phát <b id="queueNow">—</b> · Sắp phát <b id="queueCount2">0</b> bài</span>
+          <div class="btn-row">
+            <button type="button" class="btn btn-ghost btn-sm" id="btnQueueSelect">Chọn nhiều</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="btnQueueRemoveSelected" hidden>Xoá đã chọn</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="btnQueueClear">Xoá sạch</button>
+            <button type="button" class="btn btn-primary btn-sm" id="btnQueueSave">Lưu thành Playlist</button>
           </div>
         </div>
+        <p class="hint-line">Kéo – thả để đổi thứ tự ưu tiên phát. Bấm vào tên bài để phát ngay.</p>
+        <div class="queue-list" id="queueList"></div>
+      </div>
 
-        <div class="form-group">
-          <label for="songTitle">2. Tên hiển thị bài hát</label>
-          <div class="autocomplete">
-            <input type="text" id="songTitle" class="form-control" placeholder="VD: Một Đời (gõ &quot;mot&quot; cũng ra)" autocomplete="off" spellcheck="false">
-            <div class="suggest-list" id="titleSuggestions"></div>
-          </div>
-          <div class="dupe-alert" id="dupeAlert"></div>
+      <!-- SPEED & PITCH -->
+      <div class="sheet-panel" data-panel="speed">
+        <h3>Tốc độ phát (giữ nguyên cao độ)</h3>
+        <div class="chip-row" id="speedRow">
+          <button type="button" class="chip" data-speed="0.5">0.5x</button>
+          <button type="button" class="chip" data-speed="0.75">0.75x</button>
+          <button type="button" class="chip active" data-speed="1">1.0x</button>
+          <button type="button" class="chip" data-speed="1.25">1.25x</button>
+          <button type="button" class="chip" data-speed="1.5">1.5x</button>
+          <button type="button" class="chip" data-speed="2">2.0x</button>
+        </div>
+        <div class="range-row">
+          <label for="speedBar">Tuỳ chỉnh</label>
+          <input type="range" id="speedBar" min="0.5" max="2" step="0.05" value="1">
+          <b id="speedBarVal">1.00x</b>
         </div>
 
-        <div class="form-group">
-          <label for="songFilename">3. Tên file lưu trữ trên GitHub</label>
-          <input type="text" id="songFilename" class="form-control" placeholder="VD: waiting_for_you_remix.mp3">
+        <h3>Cao độ / Tông giọng (Pitch Shift)</h3>
+        <div class="chip-row" id="pitchRow">
+          <button type="button" class="chip" data-pitch="-6">-6</button>
+          <button type="button" class="chip" data-pitch="-3">-3</button>
+          <button type="button" class="chip" data-pitch="-1">-1</button>
+          <button type="button" class="chip active" data-pitch="0">0</button>
+          <button type="button" class="chip" data-pitch="1">+1</button>
+          <button type="button" class="chip" data-pitch="3">+3</button>
+          <button type="button" class="chip" data-pitch="6">+6</button>
+        </div>
+        <div class="range-row">
+          <label for="pitchBar">Tuỳ chỉnh (nửa cung)</label>
+          <input type="range" id="pitchBar" min="-12" max="12" step="1" value="0">
+          <b id="pitchBarVal">0</b>
+        </div>
+        <p class="hint-line">Cao độ chạy bằng DSP trên Web Audio nên có độ trễ nhỏ; về 0 là tắt hoàn toàn để âm thanh nguyên bản.</p>
+      </div>
+
+      <!-- EQ & DSP -->
+      <div class="sheet-panel" data-panel="eq">
+        <div class="panel-toolbar">
+          <h3>Cấu hình sẵn (Presets)</h3>
+          <label class="switch"><input type="checkbox" id="eqEnabled" checked><span>Bật EQ</span></label>
+        </div>
+        <div class="chip-row" id="eqPresetRow">
+          <button type="button" class="chip active" data-preset="flat">Flat</button>
+          <button type="button" class="chip" data-preset="pop">Pop</button>
+          <button type="button" class="chip" data-preset="rock">Rock</button>
+          <button type="button" class="chip" data-preset="jazz">Jazz</button>
+          <button type="button" class="chip" data-preset="classic">Classic</button>
+          <button type="button" class="chip" data-preset="electronic">Electronic</button>
+          <button type="button" class="chip" data-preset="dance">Dance</button>
+          <button type="button" class="chip" data-preset="acoustic">Acoustic</button>
+          <button type="button" class="chip" data-preset="hiphop">Hip-hop</button>
+          <button type="button" class="chip" data-preset="vocal">Vocal Boost</button>
+          <button type="button" class="chip" data-preset="bass">Bass Boost</button>
+          <button type="button" class="chip" data-preset="treble">Treble Boost</button>
         </div>
 
-        <div class="form-group">
-          <label for="songGenre">4. Thể loại</label>
-          <select id="songGenre" class="form-control">
-            <option value="remix">Remix (songs/remix/)</option>
-            <option value="lofi">Lofi (songs/lofi/)</option>
+        <div class="eq-bands" id="eqBands"></div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnEqReset">Đưa về 0 dB</button>
+          <button type="button" class="btn btn-primary btn-sm" id="btnEqSave">Lưu preset riêng</button>
+        </div>
+        <div class="custom-presets" id="customPresets"></div>
+        <div class="divider"></div>
+
+        <h3>Tăng cường &amp; Không gian</h3>
+        <div class="range-row"><label for="bassBar">Bass Boost</label><input type="range" id="bassBar" min="-12" max="12" step="0.5" value="0"><b id="bassVal">0 dB</b></div>
+        <div class="range-row"><label for="trebleBar">Treble Boost</label><input type="range" id="trebleBar" min="-12" max="12" step="0.5" value="0"><b id="trebleVal">0 dB</b></div>
+        <div class="range-row"><label for="widthBar">Âm trường 3D (Stereo Widening)</label><input type="range" id="widthBar" min="0" max="100" step="1" value="0"><b id="widthVal">0%</b></div>
+        <div class="range-row"><label for="balanceBar">Cân bằng L/R</label><input type="range" id="balanceBar" min="-100" max="100" step="1" value="0"><b id="balanceVal">Giữa</b></div>
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="monoSwitch"><span>Âm thanh Mono (gộp L+R)</span></label>
+          <label class="switch"><input type="checkbox" id="normSwitch"><span>Cân bằng độ lớn (ReplayGain ~)</span></label>
+        </div>
+        <p class="hint-line">
+          ReplayGain ở bản web là <b>ước lượng tự động</b> (đo RMS 8 giây đầu mỗi bài rồi tự bù gain ±6 dB). Các hiệu ứng Dolby Atmos / Head Tracking / ducking cuộc gọi là tính năng native iOS — xem README.
+        </p>
+      </div>
+
+      <!-- TIMER -->
+      <div class="sheet-panel" data-panel="timer">
+        <h3>Hẹn giờ tắt nhạc (Sleep Timer)</h3>
+        <div class="chip-row" id="timerRow">
+          <button type="button" class="chip" data-timer="15">15 phút</button>
+          <button type="button" class="chip" data-timer="30">30 phút</button>
+          <button type="button" class="chip" data-timer="45">45 phút</button>
+          <button type="button" class="chip" data-timer="60">60 phút</button>
+        </div>
+        <div class="range-row">
+          <label for="timerBar">Tuỳ chỉnh</label>
+          <input type="range" id="timerBar" min="1" max="180" step="1" value="30">
+          <b id="timerBarVal">30 phút</b>
+        </div>
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="timerEndOfTrack"><span>Phát hết bài hiện tại rồi mới tắt</span></label>
+          <label class="switch"><input type="checkbox" id="timerFade" checked><span>Tự nhỏ dần âm lượng trong 1 phút cuối</span></label>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-sm" id="btnTimerStart">Bắt đầu hẹn giờ</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnTimerCancel">Huỷ hẹn giờ</button>
+        </div>
+        <p class="timer-status" id="timerStatus">Chưa hẹn giờ.</p>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="sheet-panel" data-panel="settings">
+        <h3>Chế độ phát</h3>
+        <div class="switch-grid">
+          <label class="switch"><input type="checkbox" id="setAutoShuffleOnPlay"><span>Mặc định xáo trộn khi nhấn phát / chọn playlist</span></label>
+          <label class="switch"><input type="checkbox" id="setSmartShuffle" checked><span>Xáo trộn thông minh (không lặp bài vừa nghe, tránh 2 bài cùng ca sĩ đứng gần nhau)</span></label>
+          <label class="switch"><input type="checkbox" id="setBlendRadio"><span>Trộn bài tương đồng (Radio: tự chèn bài cùng thể loại khi hết danh sách)</span></label>
+          <label class="switch"><input type="checkbox" id="setAutoplayNext" checked><span>Tự động phát liên tục khi hết danh sách (Autoplay Next)</span></label>
+          <label class="switch"><input type="checkbox" id="setPrevRule" checked><span>Nhấn Previous khi đã phát &gt; 3 giây: tua về đầu bài hiện tại</span></label>
+        </div>
+
+        <h3>Thiết bị &amp; hệ thống (mức hỗ trợ của trình duyệt)</h3>
+        <div class="switch-grid">
+          <label class="switch"><input type="checkbox" id="setAutoplayPeripheral"><span>Tự phát khi cắm tai nghe / kết nối Bluetooth</span></label>
+          <label class="switch"><input type="checkbox" id="setPauseUnplug" checked><span>Tạm dừng khi rút tai nghe / ngắt Bluetooth</span></label>
+          <label class="switch"><input type="checkbox" id="setShake"><span>Lắc máy để đổi bài (cần cấp quyền chuyển động)</span></label>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnShakePermission">Cấp quyền chuyển động</button>
+        </div>
+
+        <h3>Tua &amp; cử chỉ</h3>
+        <div class="range-row">
+          <label for="setSeekStep">Bước tua ± (nút/nút ←→)</label>
+          <select id="setSeekStep" class="form-control">
+            <option value="5">5 giây</option>
+            <option value="10" selected>10 giây</option>
+            <option value="15">15 giây</option>
+            <option value="30">30 giây</option>
+          </select>
+        </div>
+        <div class="range-row">
+          <label for="setDoubleTapStep">Chạm 2 lần trái/phải</label>
+          <select id="setDoubleTapStep" class="form-control">
+            <option value="5">5 giây</option>
+            <option value="10" selected>10 giây</option>
+            <option value="15">15 giây</option>
+            <option value="30">30 giây</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label>URL tĩnh sẽ phát sinh:</label>
-          <div class="url-preview" id="urlPreview">https://username.github.io/repo/songs/remix/...</div>
+        <h3>Chuyển bài mượt mà</h3>
+        <label class="switch"><input type="checkbox" id="setGapless"><span>Phát liền mạch (Gapless – giảm tối đa khoảng lặng giữa 2 bài)</span></label>
+        <div class="range-row">
+          <label for="setCrossfadeBar">Crossfade</label>
+          <input type="range" id="setCrossfadeBar" min="0" max="12" step="1" value="0">
+          <b id="setCrossfadeVal">Tắt</b>
+        </div>
+        <div class="range-row">
+          <label for="setFadeBar">Fade in/out khi Play/Pause</label>
+          <input type="range" id="setFadeBar" min="0" max="1" step="0.05" value="0.2">
+          <b id="setFadeVal">0.2s</b>
         </div>
 
-        <button type="button" class="btn btn-primary" id="btnAddSong">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          Thêm vào danh sách tạm thời
-        </button>
-      </div>
-
-      <!-- Card Xuất JSON & Đồng bộ -->
-      <div class="card">
-        <div class="card-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Xuất File JSON Đã Cập Nhật
+        <h3>Ghi nhớ phiên nghe</h3>
+        <div class="switch-grid">
+          <label class="switch"><input type="checkbox" id="setResume" checked><span>Tự phát lại đúng vị trí cũ khi mở app</span></label>
+          <label class="switch"><input type="checkbox" id="setResumeAutoPlay"><span>Mở app là phát tiếp luôn (cần tương tác 1 lần với trang)</span></label>
         </div>
-        <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5;">
-          Tải file JSON về máy sau khi thêm/xóa bài rồi commit đè lên file <code>remix.json</code> hoặc <code>lofi.json</code> trong kho GitHub.
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnResetData">Xoá dữ liệu đã lưu</button>
+        </div>
+        <p class="hint-line">
+          Ducking khi có thông báo/cuộc gọi, Dolby Atmos/Head Tracking, gapless tuyệt đối và EQ ở tầng hệ điều hành chỉ làm được trên app iOS native (Flutter) — bản web tự động dùng cơ chế gần nhất mà trình duyệt hỗ trợ.
         </p>
-
-        <div class="btn-group-grid">
-          <button type="button" class="btn btn-secondary" id="btnDownloadRemix">
-            Tải remix.json
-          </button>
-          <button type="button" class="btn btn-secondary" id="btnDownloadLofi">
-            Tải lofi.json
-          </button>
-        </div>
-
-        <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 14px;">
-          <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 8px;">Import JSON có sẵn từ máy (chọn được cả <code>remix.json</code> và <code>lofi.json</code> cùng lúc):</label>
-          <div class="import-options">
-            <select id="importGenre" class="form-control" title="Thể loại của file JSON được import">
-              <option value="auto">Thể loại: Tự nhận diện</option>
-              <option value="remix">Thể loại: Remix</option>
-              <option value="lofi">Thể loại: Lofi</option>
-            </select>
-            <select id="importMode" class="form-control" title="Cách ghi vào danh sách hiện tại">
-              <option value="replace">Chế độ: Ghi đè</option>
-              <option value="append">Chế độ: Thêm vào</option>
-            </select>
-          </div>
-          <input type="file" id="importJsonInput" accept=".json,application/json" multiple style="font-size: 0.8rem; color: var(--text-muted); width: 100%;">
-          <p style="font-size: 0.74rem; color: var(--text-dim); margin-top: 8px; line-height: 1.5;">
-            Link dạng <code>.../D:/songs/lofi/...</code> sẽ được tự động chuẩn hoá lại theo GitHub Username/Repo ở trên.
-          </p>
-        </div>
       </div>
-    </section>
-
-    <!-- CỘT PHẢI: QUẢN LÝ DANH SÁCH & NGHE THỬ -->
-    <section>
-      <div class="card">
-        <div class="tabs-wrapper">
-          <div class="tabs">
-            <button class="tab-btn active" id="tabRemix" data-tab="remix">
-              Remix <span class="tab-badge" id="badgeRemix">0</span>
-            </button>
-            <button class="tab-btn" id="tabLofi" data-tab="lofi">
-              Lofi <span class="tab-badge" id="badgeLofi">0</span>
-            </button>
-          </div>
-
-          <div class="tab-actions">
-            <button class="btn btn-secondary btn-sm" id="btnReloadRepo" title="Fetch lại từ GitHub">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-              Tải lại từ Repo
-            </button>
-          </div>
-        </div>
-
-        <!-- Song list container -->
-        <div class="song-list" id="songListContainer">
-          <!-- Rendered dynamically -->
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </aside>
 
   <footer>
-    qhun22Music Static Manager &bull; Không cần Server / Database &bull; Hỗ trợ iOS TrollStore
+    qhun22Music &bull; Trình phát + Quản trị tĩnh &bull; Không cần server/database &bull; Build IPA qua Codemagic cho TrollStore
   </footer>
 
   <div class="toast" id="toast"></div>
 
-  <script>
-    // State management
-    const state = {
-      activeTab: 'remix',
-      songs: {
-        remix: [],
-        lofi: []
-      },
-      config: {
-        username: 'username',
-        repo: 'repo'
-      }
-    };
-
-    // DOM Elements
-    const cfgUsername = document.getElementById('cfgUsername');
-    const cfgRepo = document.getElementById('cfgRepo');
-    const fileInput = document.getElementById('fileInput');
-    const fileNotice = document.getElementById('fileNotice');
-    const songTitle = document.getElementById('songTitle');
-    const songFilename = document.getElementById('songFilename');
-    const songGenre = document.getElementById('songGenre');
-    const urlPreview = document.getElementById('urlPreview');
-    const btnAddSong = document.getElementById('btnAddSong');
-    const tabRemix = document.getElementById('tabRemix');
-    const tabLofi = document.getElementById('tabLofi');
-    const badgeRemix = document.getElementById('badgeRemix');
-    const badgeLofi = document.getElementById('badgeLofi');
-    const songListContainer = document.getElementById('songListContainer');
-    const btnDownloadRemix = document.getElementById('btnDownloadRemix');
-    const btnDownloadLofi = document.getElementById('btnDownloadLofi');
-    const btnReloadRepo = document.getElementById('btnReloadRepo');
-    const importJsonInput = document.getElementById('importJsonInput');
-    const importGenre = document.getElementById('importGenre');
-    const importMode = document.getElementById('importMode');
-    const titleSuggestions = document.getElementById('titleSuggestions');
-    const dupeAlert = document.getElementById('dupeAlert');
-    const toast = document.getElementById('toast');
-
-    // Auto-detect GitHub username and repo from URL if hosted on github.io
-    function initRepoConfig() {
-      const hostname = window.location.hostname;
-      const pathname = window.location.pathname.split('/').filter(Boolean);
-
-      let savedUser = localStorage.getItem('music_hub_gh_user');
-      let savedRepo = localStorage.getItem('music_hub_gh_repo');
-
-      if (!savedUser && hostname.endsWith('.github.io')) {
-        savedUser = hostname.split('.')[0];
-      }
-      if (!savedRepo && pathname.length > 0) {
-        savedRepo = pathname[0];
-      }
-
-      state.config.username = savedUser || 'qhun22';
-      state.config.repo = savedRepo || 'AppMusic';
-
-      cfgUsername.value = state.config.username;
-      cfgRepo.value = state.config.repo;
-
-      updateUrlPreview();
-    }
-
-    function saveConfig() {
-      state.config.username = cfgUsername.value.trim() || 'qhun22';
-      state.config.repo = cfgRepo.value.trim() || 'AppMusic';
-      localStorage.setItem('music_hub_gh_user', state.config.username);
-      localStorage.setItem('music_hub_gh_repo', state.config.repo);
-      updateUrlPreview();
-    }
-
-    cfgUsername.addEventListener('input', saveConfig);
-    cfgRepo.addEventListener('input', saveConfig);
-
-    // Build static GitHub Pages URL for a song file
-    function buildSongUrl(genre, filename) {
-      return `https://${state.config.username}.github.io/${state.config.repo}/songs/${genre}/${encodeURIComponent(filename)}`;
-    }
-
-    // Update real-time URL preview
-    function updateUrlPreview() {
-      const genre = songGenre.value;
-      const filename = songFilename.value.trim() || 'example.mp3';
-      const safeFilename = filename.endsWith('.mp3') ? filename : `${filename}.mp3`;
-      urlPreview.textContent = buildSongUrl(genre, safeFilename);
-    }
-
-    songGenre.addEventListener('change', updateUrlPreview);
-    songFilename.addEventListener('input', updateUrlPreview);
-
-    // File input handler: auto-extract song title and clean filename
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      fileNotice.textContent = file.name;
-      // Strip .mp3 extension
-      const rawName = file.name.replace(/\.[^/.]+$/, "");
-      songTitle.value = rawName;
-
-      // Clean storage filename (convert spaces to underscores or preserve clean characters)
-      const cleanFilename = file.name.replace(/\s+/g, '_');
-      songFilename.value = cleanFilename;
-
-      updateUrlPreview();
-      // Báo ngay nếu tên bài vừa trích ra đã tồn tại trong kho
-      updateDupeAlert();
-    });
-
-    // ===== GỢI Ý TÊN BÀI HÁT + CẢNH BÁO TRÙNG TÊN =====
-    const suggestState = { items: [], activeIndex: -1 };
-
-    // Bỏ dấu tiếng Việt + lowercase, giữ nguyên độ dài chuỗi để highlight đúng vị trí
-    function normalizeVi(str) {
-      return (str || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/đ/g, 'd')
-        .replace(/Đ/g, 'D')
-        .toLowerCase()
-        .trim();
-    }
-
-    // Gộp tiêu đề của cả 2 thể loại để tra trùng (kể cả khác thể loại)
-    function collectAllTitles() {
-      const all = [];
-      ['remix', 'lofi'].forEach((genre) => {
-        (state.songs[genre] || []).forEach((song) => {
-          all.push({ id: song.id, title: song.title, url: song.url, genre: genre });
-        });
-      });
-      return all;
-    }
-
-    // Tên bài đã tồn tại y hệt (không phân biệt dấu / hoa thường)
-    function getExactDupe(title) {
-      const target = normalizeVi(title);
-      if (!target) return null;
-      return collectAllTitles().find((entry) => normalizeVi(entry.title) === target) || null;
-    }
-
-    // Tìm bài gần giống: ưu tiên khớp từ đầu tên, sau đó mới tới khớp giữa tên
-    function findTitleMatches(query) {
-      const q = normalizeVi(query);
-      if (!q) return [];
-      const startsWith = [];
-      const contains = [];
-      collectAllTitles().forEach((entry) => {
-        const pos = normalizeVi(entry.title).indexOf(q);
-        if (pos === 0) startsWith.push(entry);
-        else if (pos > 0) contains.push(entry);
-      });
-      return startsWith.concat(contains).slice(0, 8);
-    }
-
-    function highlightTitle(title, query) {
-      const q = normalizeVi(query);
-      const pos = q ? normalizeVi(title).indexOf(q) : -1;
-      if (pos < 0) return escapeHtml(title);
-      const end = pos + q.length;
-      return escapeHtml(title.slice(0, pos)) +
-        '<mark>' + escapeHtml(title.slice(pos, end)) + '</mark>' +
-        escapeHtml(title.slice(end));
-    }
-
-    function closeTitleSuggestions() {
-      titleSuggestions.classList.remove('open');
-      titleSuggestions.innerHTML = '';
-      suggestState.items = [];
-      suggestState.activeIndex = -1;
-    }
-
-    function renderTitleSuggestions(query) {
-      const keyword = (query || '').trim();
-      if (!keyword) {
-        closeTitleSuggestions();
-        return;
-      }
-
-      const matches = findTitleMatches(keyword);
-      suggestState.items = matches;
-      suggestState.activeIndex = -1;
-
-      if (matches.length === 0) {
-        closeTitleSuggestions();
-        return;
-      }
-
-      titleSuggestions.innerHTML =
-        `<div class="suggest-head">Có ${matches.length} bài khớp "${escapeHtml(keyword)}" trong kho</div>` +
-        matches.map((entry, i) => `
-          <div class="suggest-item" data-index="${i}" title="${escapeHtml(entry.title)}">
-            <div class="suggest-title">${highlightTitle(entry.title, keyword)}</div>
-            <div class="suggest-meta">
-              <span class="suggest-badge genre-${entry.genre}">${entry.genre}</span>
-              <span class="suggest-badge">#${entry.id}</span>
-            </div>
-          </div>
-        `).join('');
-
-      titleSuggestions.classList.add('open');
-    }
-
-    function pickSuggestion(entry) {
-      if (!entry) return;
-      songTitle.value = entry.title;
-      closeTitleSuggestions();
-      updateDupeAlert();
-      showToast(`"${entry.title}" đã có trong ${entry.genre.toUpperCase()} (#${entry.id})`, 'error');
-    }
-
-    function updateDupeAlert() {
-      const value = songTitle.value.trim();
-
-      if (!value) {
-        dupeAlert.className = 'dupe-alert';
-        dupeAlert.textContent = '';
-        return;
-      }
-
-      const dupe = getExactDupe(value);
-      if (dupe) {
-        dupeAlert.className = 'dupe-alert show';
-        dupeAlert.textContent = `Trùng tên: "${dupe.title}" đã tồn tại trong ${dupe.genre.toUpperCase()} (#${dupe.id}). Kiểm tra kỹ trước khi thêm!`;
-        return;
-      }
-
-      const nearCount = findTitleMatches(value).length;
-      dupeAlert.className = 'dupe-alert show ok';
-      dupeAlert.textContent = nearCount > 0
-        ? `Tên này chưa có trong kho, nhưng có ${nearCount} bài gần giống (xem gợi ý bên dưới ô nhập).`
-        : 'Tên này chưa có trong kho (đã tra cả remix + lofi).';
-    }
-
-    songTitle.addEventListener('input', () => {
-      renderTitleSuggestions(songTitle.value);
-      updateDupeAlert();
-    });
-
-    songTitle.addEventListener('focus', () => renderTitleSuggestions(songTitle.value));
-
-    songTitle.addEventListener('blur', () => setTimeout(closeTitleSuggestions, 120));
-
-    // Chọn gợi ý bằng chuột (dùng mousedown để không bị blur cắt mất)
-    titleSuggestions.addEventListener('mousedown', (e) => {
-      const item = e.target.closest('.suggest-item');
-      if (!item) return;
-      e.preventDefault();
-      pickSuggestion(suggestState.items[Number(item.dataset.index)]);
-    });
-
-    // Điều hướng gợi ý bằng bàn phím
-    songTitle.addEventListener('keydown', (e) => {
-      const isOpen = titleSuggestions.classList.contains('open');
-
-      if (!isOpen || suggestState.items.length === 0) {
-        if (e.key === 'Escape') closeTitleSuggestions();
-        return;
-      }
-
-      const nodes = Array.from(titleSuggestions.querySelectorAll('.suggest-item'));
-
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        let i = suggestState.activeIndex;
-        i = e.key === 'ArrowDown' ? Math.min(i + 1, nodes.length - 1) : Math.max(i - 1, 0);
-        suggestState.activeIndex = i;
-        nodes.forEach((node, idx) => node.classList.toggle('active', idx === i));
-        nodes[i].scrollIntoView({ block: 'nearest' });
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        const index = suggestState.activeIndex >= 0 ? suggestState.activeIndex : 0;
-        pickSuggestion(suggestState.items[index]);
-      } else if (e.key === 'Escape') {
-        closeTitleSuggestions();
-      }
-    });
-
-    // Show Toast Notification
-    function showToast(message, type = 'success') {
-      toast.textContent = message;
-      toast.className = `toast show ${type}`;
-      setTimeout(() => {
-        toast.className = 'toast';
-      }, 3000);
-    }
-
-    // Add song to current list
-    btnAddSong.addEventListener('click', () => {
-      const title = songTitle.value.trim();
-      let filename = songFilename.value.trim();
-      const genre = songGenre.value;
-
-      if (!title) {
-        showToast('Vui lòng nhập tên hiển thị bài hát!', 'error');
-        return;
-      }
-      if (!filename) {
-        showToast('Vui lòng nhập tên file MP3!', 'error');
-        return;
-      }
-
-      if (!filename.endsWith('.mp3')) {
-        filename += '.mp3';
-      }
-
-      // Cảnh báo trùng tên trước khi thêm (vẫn cho phép nếu bạn xác nhận)
-      const dupe = getExactDupe(title);
-      if (dupe && !confirm(`"${title}" đã tồn tại trong ${dupe.genre.toUpperCase()} (#${dupe.id}). Vẫn thêm bài này?`)) {
-        return;
-      }
-
-      const songUrl = buildSongUrl(genre, filename);
-
-      const currentList = state.songs[genre];
-      // Generate auto-increment ID
-      const maxId = currentList.length > 0 ? Math.max(...currentList.map(s => s.id || 0)) : 0;
-      const newSong = {
-        id: maxId + 1,
-        title: title,
-        url: songUrl
-      };
-
-      // Add to front of array (newest first)
-      currentList.unshift(newSong);
-
-      // Switch to that genre's tab to show immediately
-      switchTab(genre);
-      renderList();
-      showToast(`Đã thêm "${title}" vào danh sách ${genre.toUpperCase()}!`);
-
-      // Reset input fields
-      songTitle.value = '';
-      songFilename.value = '';
-      fileInput.value = '';
-      fileNotice.innerHTML = '<strong>Kéo thả file MP3 vào đây</strong> hoặc bấm để duyệt';
-      closeTitleSuggestions();
-      updateDupeAlert();
-      updateUrlPreview();
-    });
-
-    // Switch Tab
-    function switchTab(tab) {
-      state.activeTab = tab;
-      if (tab === 'remix') {
-        tabRemix.classList.add('active');
-        tabLofi.classList.remove('active');
-      } else {
-        tabLofi.classList.add('active');
-        tabRemix.classList.remove('active');
-      }
-      renderList();
-    }
-
-    tabRemix.addEventListener('click', () => switchTab('remix'));
-    tabLofi.addEventListener('click', () => switchTab('lofi'));
-
-    // Render song list in right column
-    function renderList() {
-      badgeRemix.textContent = state.songs.remix.length;
-      badgeLofi.textContent = state.songs.lofi.length;
-
-      const list = state.songs[state.activeTab];
-      songListContainer.innerHTML = '';
-
-      if (list.length === 0) {
-        songListContainer.innerHTML = `
-          <div class="empty-state">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M10 15l5-3-5-3v6z"/></svg>
-            <p>Chưa có bài hát nào trong thể loại <strong>${state.activeTab.toUpperCase()}</strong></p>
-            <p style="font-size: 0.8rem; margin-top: 6px;">Thêm bài hát mới ở cột bên trái hoặc tải lại từ Repo.</p>
-          </div>
-        `;
-        return;
-      }
-
-      list.forEach((song, index) => {
-        const item = document.createElement('div');
-        item.className = 'song-card';
-        item.innerHTML = `
-          <div class="song-id">#${song.id}</div>
-          <div class="song-info">
-            <div class="song-title" title="${escapeHtml(song.title)}">${escapeHtml(song.title)}</div>
-            <div class="song-url" onclick="copyToClipboard('${escapeHtml(song.url)}')" title="Bấm để copy link">${escapeHtml(song.url)}</div>
-            <div class="song-player-container">
-              <audio controls preload="none" src="${escapeHtml(song.url)}"></audio>
-            </div>
-          </div>
-          <div class="song-actions">
-            <button class="btn-icon btn-icon-copy" onclick="copyToClipboard('${escapeHtml(song.url)}')" title="Sao chép liên kết">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-            <button class="btn-icon" onclick="removeSong('${state.activeTab}', ${song.id})" title="Xóa bài này">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </button>
-          </div>
-        `;
-        songListContainer.appendChild(item);
-      });
-
-      // Danh sách vừa đổi (thêm/xóa/import) thì làm mới luôn gợi ý đang mở
-      if (titleSuggestions.classList.contains('open')) {
-        renderTitleSuggestions(songTitle.value);
-      }
-    }
-
-    // Helper functions
-    function escapeHtml(str) {
-      return (str || '').replace(/[&<>"']/g, function(m) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
-      });
-    }
-
-    window.removeSong = function(genre, id) {
-      if (confirm('Bạn có chắc muốn xóa bài hát này khỏi danh sách?')) {
-        state.songs[genre] = state.songs[genre].filter(s => s.id !== id);
-        renderList();
-        showToast('Đã xóa bài hát khỏi danh sách!');
-      }
-    };
-
-    window.copyToClipboard = function(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Đã copy đường dẫn bài hát!');
-      }).catch(() => {
-        showToast('Không thể sao chép!', 'error');
-      });
-    };
-
-    // Download JSON Helper
-    function downloadJSON(filename, data) {
-      const jsonStr = JSON.stringify(data, null, 2);
-      const blob = new Blob([jsonStr], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast(`Đã xuất file ${filename}!`);
-    }
-
-    btnDownloadRemix.addEventListener('click', () => {
-      downloadJSON('remix.json', state.songs.remix);
-    });
-
-    btnDownloadLofi.addEventListener('click', () => {
-      downloadJSON('lofi.json', state.songs.lofi);
-    });
-
-    // ===== IMPORT JSON remix.json / lofi.json có sẵn =====
-    function detectGenreFromFileName(fileName) {
-      const name = normalizeVi(fileName);
-      if (name.includes('lofi')) return 'lofi';
-      if (name.includes('remix')) return 'remix';
-      return null;
-    }
-
-    function detectGenreFromSongs(songs) {
-      const joined = songs.map((s) => (s && s.url ? String(s.url) : '')).join(' ').toLowerCase();
-      if (joined.includes('/songs/lofi/')) return 'lofi';
-      if (joined.includes('/songs/remix/')) return 'remix';
-      return null;
-    }
-
-    // Chuẩn hoá 1 phần tử trong file JSON về đúng dạng { id, title, url }
-    function normalizeSongEntry(raw) {
-      if (!raw || typeof raw !== 'object') return null;
-      const title = typeof raw.title === 'string' ? raw.title.trim() : '';
-      const url = typeof raw.url === 'string' ? raw.url.trim() : '';
-      if (!title || !url) return null;
-      const id = Number.parseInt(raw.id, 10);
-      return { id: Number.isFinite(id) && id > 0 ? id : null, title: title, url: url };
-    }
-
-    // Sửa link hỏng dạng https://user.github.io/D:/songs/lofi/... theo cấu hình hiện tại
-    function normalizeImportedUrl(url, genre) {
-      const marker = `/songs/${genre}/`;
-      const idx = url.indexOf(marker);
-      if (idx === -1) return { url: url, fixed: false };
-      const tail = url.slice(idx + marker.length);
-      const rebuilt = `https://${state.config.username}.github.io/${state.config.repo}${marker}${tail}`;
-      return { url: rebuilt, fixed: rebuilt !== url };
-    }
-
-    // Đảm bảo id không trùng nhau (file JSON cũ có thể bị trùng id)
-    function ensureUniqueIds(list) {
-      const used = new Set();
-      let nextId = list.reduce((max, s) => Math.max(max, Number(s.id) || 0), 0);
-      list.forEach((song) => {
-        if (!song.id || used.has(song.id)) {
-          nextId += 1;
-          song.id = nextId;
-        }
-        used.add(song.id);
-      });
-      return list;
-    }
-
-    // Ghi danh sách vừa import vào state theo chế độ Ghi đè / Thêm vào
-    function mergeIntoGenre(genre, incoming, mode) {
-      if (!Array.isArray(state.songs[genre])) state.songs[genre] = [];
-      const list = state.songs[genre];
-
-      if (mode === 'replace') {
-        state.songs[genre] = ensureUniqueIds(incoming.map((song) => ({ ...song })));
-        return { total: incoming.length, added: incoming.length, skipped: 0 };
-      }
-
-      let maxId = list.reduce((max, s) => Math.max(max, Number(s.id) || 0), 0);
-      const keys = new Set(list.map((s) => `${normalizeVi(s.title)}|${s.url}`));
-      let added = 0;
-      let skipped = 0;
-
-      incoming.forEach((song) => {
-        const key = `${normalizeVi(song.title)}|${song.url}`;
-        if (keys.has(key)) {
-          skipped += 1;
-          return;
-        }
-        keys.add(key);
-        maxId += 1;
-        list.push({ id: maxId, title: song.title, url: song.url });
-        added += 1;
-      });
-
-      return { total: incoming.length, added: added, skipped: skipped };
-    }
-
-    // Import existing JSON (chọn được nhiều file: remix.json + lofi.json cùng lúc)
-    importJsonInput.addEventListener('change', async (e) => {
-      const files = Array.from(e.target.files || []);
-      if (files.length === 0) return;
-      const forcedGenre = importGenre.value;   // auto | remix | lofi
-      const mode = importMode.value;           // replace | append
-      const touchedGenres = new Set();
-      const summary = [];
-      let hasError = false;
-
-      for (const file of files) {
-        let parsed;
-        try {
-          parsed = JSON.parse(await file.text());
-        } catch (err) {
-          summary.push(`${file.name}: lỗi cú pháp JSON`);
-          hasError = true;
-          continue;
-        }
-
-        if (!Array.isArray(parsed)) {
-          summary.push(`${file.name}: nội dung không phải mảng bài hát`);
-          hasError = true;
-          continue;
-        }
-
-        let genre = forcedGenre === 'auto' ? detectGenreFromFileName(file.name) : forcedGenre;
-        if (!genre) genre = detectGenreFromSongs(parsed);
-        if (!genre) {
-          summary.push(`${file.name}: không rõ thể loại (chọn Remix hoặc Lofi ở ô Thể loại)`);
-          hasError = true;
-          continue;
-        }
-
-        let fixedLinks = 0;
-        const valid = [];
-        parsed.forEach((raw) => {
-          const song = normalizeSongEntry(raw);
-          if (!song) return;
-          const normalized = normalizeImportedUrl(song.url, genre);
-          if (normalized.fixed) fixedLinks += 1;
-          song.url = normalized.url;
-          valid.push(song);
-        });
-
-        if (valid.length === 0) {
-          summary.push(`${file.name}: không có bài hợp lệ (mỗi bài cần có title và url)`);
-          hasError = true;
-          continue;
-        }
-
-        const result = mergeIntoGenre(genre, valid, mode);
-        touchedGenres.add(genre);
-
-        const action = mode === 'replace'
-          ? `ghi đè ${result.total} bài`
-          : `thêm ${result.added}, bỏ qua ${result.skipped} bài trùng`;
-        const fixedNote = fixedLinks > 0 ? `, sửa ${fixedLinks} link` : '';
-        summary.push(`${file.name} → ${genre.toUpperCase()}: ${action}${fixedNote}`);
-      }
-
-      importJsonInput.value = '';
-
-      if (touchedGenres.size === 1) {
-        switchTab([...touchedGenres][0]);
-      } else {
-        renderList();
-      }
-
-      updateDupeAlert();
-      showToast(`Import: ${summary.join(' | ')}`, hasError ? 'error' : 'success');
-    });
-
-    // Fetch data from GitHub repository with cache buster
-    async function loadDataFromRepo() {
-      const cacheBuster = `?t=${Date.now()}`;
-      try {
-        const [resRemix, resLofi] = await Promise.all([
-          fetch(`./remix.json${cacheBuster}`).catch(() => null),
-          fetch(`./lofi.json${cacheBuster}`).catch(() => null)
-        ]);
-
-        if (resRemix && resRemix.ok) {
-          state.songs.remix = await resRemix.json();
-        }
-        if (resLofi && resLofi.ok) {
-          state.songs.lofi = await resLofi.json();
-        }
-
-        renderList();
-        showToast('Đã tải danh sách bài hát từ Repository!');
-      } catch (e) {
-        console.warn('Could not auto-fetch json from relative path:', e);
-      }
-    }
-
-    btnReloadRepo.addEventListener('click', loadDataFromRepo);
-
-    // Initial load
-    initRepoConfig();
-    loadDataFromRepo();
-  </script>
+  <script src="assets/js/audio-engine.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
+
+
+
+
+
